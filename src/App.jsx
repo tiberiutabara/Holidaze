@@ -1,5 +1,6 @@
 // imports
 import { Routes, Route } from "react-router-dom"
+import "./App.scss"
 
 // component imports
 import Header from './components/Header';

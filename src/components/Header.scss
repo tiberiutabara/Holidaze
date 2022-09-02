@@ -1,0 +1,59 @@
+header{
+    
+// General styles
+    height: 130px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2em;
+
+// Image
+    img{
+        height: 81px;
+    }
+
+// Menu
+    .menu{
+        display: flex;
+        justify-content: space-between;
+        
+        ul{
+            display: flex;
+            list-style-type: none;
+        }
+    }
+
+// Navigation
+    .navigation{
+        margin-right: 2em;
+        padding-top: .3em;
+
+        li{
+            margin-left: 2em;
+            font-size: 18px;
+            font-weight: 600;
+
+            a{
+                color: black;
+                text-decoration: none;
+            }
+        }
+    }
+
+// Options
+    .options{
+        .button{
+            margin-right: 1em;
+        }
+
+        .switch{
+            background-color: white;
+            color: #333;
+            border: 3px solid #333;
+            padding: .2em .3em 0 .3em;
+            font-size: 21px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+    }
+}

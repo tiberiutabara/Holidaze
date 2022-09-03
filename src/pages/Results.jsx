@@ -8,6 +8,8 @@ export default function Results() {
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error.</p>
 
+  console.log(data)
+
   return (
     <div className='results'>
       {data.map(hotel => (

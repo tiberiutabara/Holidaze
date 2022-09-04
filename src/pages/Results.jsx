@@ -1,9 +1,27 @@
 import { Link } from 'react-router-dom'
-import useFetch from '../hooks/useFetch'
+import { useQuery, gql } from '@apollo/client'
+
+const HOTELS = gql`
+  query getHotels {
+    hotels{
+      data{
+
+        id,
+
+        attributes{
+          Title,
+          Price,
+          Description,
+        }
+
+      }
+    }
+  }
+`
 
 export default function Results() {
 
-  const { loading, error, data } = useFetch('http://localhost:1337/api/hotels?populate=*')
+  const { loading, error, data } = useQuery(HOTELS)
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error.</p>
@@ -12,7 +30,7 @@ export default function Results() {
 
   return (
     <div className='results'>
-      {data.map(hotel => (
+      {data.hotels.data.map(hotel => (
         <div key={hotel.id} className="hotel-card">
           <h3>{hotel.attributes.Title}</h3>
           <p>{hotel.attributes.Price}</p>

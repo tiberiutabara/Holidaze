@@ -1,26 +1,36 @@
-import { Link } from 'react-router-dom'
-import useFetch from '../hooks/useFetch'
+import { useState } from 'react'
+import HotelBox from '../components/HotelBox'
 
 export default function Results() {
+  const [area, setArea] = useState('City Center')
 
-  const { loading, error, data } = useFetch('http://localhost:1337/api/hotels?populate=*')
-
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error.</p>
-
-  console.log(data)
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
 
   return (
     <div className='results'>
-      {data.map(hotel => (
-        <div key={hotel.id} className="hotel-card">
-          <h3>{hotel.attributes.Title}</h3>
-          <p>{hotel.attributes.Price}</p>
 
-          <Link to={`/Hotel/${hotel.id}`}>Details</Link>
-          <br /> <br />
-        </div>
-      ))}
-    </div>
+    <form onSubmit={handleSubmit}>
+
+
+    <label> <span>Choose Area: </span>
+        <select id="area" 
+          required
+          onChange={(e) => setArea(e.target.value)}
+          value={area}
+        >
+            <option value={"Anywhere"}>Anywhere</option>
+            <option value="City Center">City Center</option>
+            <option value="Outskirts">Outskirts</option>
+            <option value="Camping">Camping</option>
+        </select>
+    </label>
+
+    <button type='submit'>Submit</button>
+    </form>
+
+      <HotelBox area={area} />
+    </div> 
   )
 }

@@ -10,6 +10,7 @@ const HOTELS = gql`
         attributes {
           Title
           Price
+          Area
           Description
         }
       }
@@ -31,6 +32,7 @@ export default function Results() {
         <div key={hotel.id} className="hotel-card">
           <h3>{hotel.attributes.Title}</h3>
           <p>{hotel.attributes.Price}</p>
+          <h4>{hotel.attributes.Area}</h4>
           <Link to={`/Hotel/${hotel.id}`}>Details</Link>
           <br /> <br />
         </div>

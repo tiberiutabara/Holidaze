@@ -17,6 +17,14 @@ export default function Hotel() {
           <h3>{data.attributes.Title}</h3>
           <p>{data.attributes.Price}</p>
 
+          {data.attributes.WiFi && <p>WiFi</p>}
+          {data.attributes.Pets && <p>Pets Allowed</p>}
+          {data.attributes.Parking && <p>Parking</p>}
+          {data.attributes.Bathroom && <p>Private Bathroom</p>}
+          {data.attributes.Roomservice && <p>Room Service</p>}
+          {data.attributes.Food && <p>Restaurant</p>}
+
+
           <p>{data.attributes.Description}</p>
 
           <p>Thumbnail:</p>

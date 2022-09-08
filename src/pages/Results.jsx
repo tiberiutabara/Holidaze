@@ -2,7 +2,7 @@ import { useState } from 'react'
 import HotelBox from '../components/HotelBox'
 
 export default function Results() {
-  const [area, setArea] = useState('City Center')
+  const [area, setArea] = useState('Anywhere')
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -15,15 +15,15 @@ export default function Results() {
 
 
     <label> <span>Choose Area: </span>
-        <select id="area" 
+        <select 
+          id="area" 
           required
           onChange={(e) => setArea(e.target.value)}
-          value={area}
         >
-            <option value={"Anywhere"}>Anywhere</option>
+            <option value="Anywhere">Anywhere</option>
             <option value="City Center">City Center</option>
-            <option value="Outskirts">Outskirts</option>
-            <option value="Camping">Camping</option>
+            <option value="Urban">Urban</option>
+            <option value="Rural">Rural</option>
         </select>
     </label>
 

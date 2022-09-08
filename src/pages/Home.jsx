@@ -1,7 +1,11 @@
+import { Link } from "react-router-dom";
 
 
 export default function Home() {
   return (
-    <div>Home</div>
+    <div>Home <br />
+
+      <Link to="/results">Results</Link>
+    </div>
   )
 }

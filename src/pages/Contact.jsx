@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { contactSchema } from "../validations/ContactValidation";
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -7,9 +10,13 @@ export default function Contact() {
   const [category, setCategory] = useState("Hotel Listings");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(contactSchema) });
 
+  const onSubmit = () => {
     async function addMessage() {
       const messageContent = {
         name: name,
@@ -18,6 +25,10 @@ export default function Contact() {
         category: category,
         message: message,
       };
+
+      const isValid = await contactSchema.isValid(messageContent);
+
+      isValid && alert("Form submited successfully");
 
       const add = await fetch("http://localhost:1337/api/messages", {
         method: "POST",
@@ -44,69 +55,70 @@ export default function Contact() {
 
   return (
     <div className="contact">
-
       <h1>For collaboration proposals,</h1>
       <h2>Don't heistate to get in touch</h2>
       <br /> <br />
-
-      <form className="contact-form" onSubmit={handleSubmit}>
+      <form className="contact-form" onSubmit={handleSubmit(onSubmit)}>
         <label>
           {" "}
           <span> Your Name / Company</span>
           <input
+            {...register("name")}
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            required
           />
+          {errors.name && <span>{errors.name.message}</span>}
         </label>
-
         <br /> <br />
         <label>
           {" "}
           <span> Your Email</span>
           <input
+            {...register("email")}
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
           />
+          {errors.email && <span>{errors.email.message}</span>}
         </label>
-
         <br /> <br />
         <label>
           {" "}
           <span> Subject Title</span>
           <input
+            {...register("subject")}
             type="text"
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
-            required
           />
+          {errors.subject && <span>{errors.subject.message}</span>}
         </label>
-
         <br /> <br />
         <label>
           {" "}
           <span> Choose Category</span>
-          <select onChange={(e) => setCategory(e.target.value)} required>
+          <select
+            {...register("category")}
+            onChange={(e) => setCategory(e.target.value)}
+          >
             <option value="Hotel Listings">Hotel Listings</option>
             <option value="Bug repport">Bug repport</option>
             <option value="Career">Career</option>
           </select>
+          {errors.category && <span>{errors.category.message}</span>}
         </label>
-
         <br /> <br />
         <label>
           {" "}
           <span> Message</span>
           <textarea
+            {...register("message")}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            required
           ></textarea>
+          {errors.message && <span>{errors.message.message}</span>}
         </label>
-        
         <br /> <br />
         <button>Send message</button>
       </form>

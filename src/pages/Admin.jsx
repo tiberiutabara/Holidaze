@@ -13,7 +13,7 @@
 
       <h1>Admin</h1>
 
-      {data.map(message => (
+      {data.length > 0 ? data.map(message => (
 
         <div key={message.id} className="message-card">
         <h3>{message.attributes.subject}</h3>
@@ -22,7 +22,7 @@
         <br /> <br />
         </div> 
 
-      ))}
+      )) : <p>No messages</p>}
 
      </div>
    )

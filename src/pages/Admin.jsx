@@ -1,9 +1,8 @@
-
 import useFetch from '../hooks/useFetch'
  
  export default function Admin() {
   const { loading, error, data } = useFetch('http://localhost:1337/api/messages')
-
+  
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error.</p>
 
@@ -20,7 +19,6 @@ import useFetch from '../hooks/useFetch'
     }
 
     deleteMessage()
-    window.location.reload()
 
   }
 

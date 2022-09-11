@@ -8,6 +8,7 @@ export default function Home() {
     <div>Home <br />
 
       <Link to="/results">Results</Link>
+      <Link to="/admin">Admin</Link>
       <NewListings />
     </div>
   )

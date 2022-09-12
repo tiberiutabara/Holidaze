@@ -10,8 +10,6 @@ export default function Hotel() {
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error.</p>
 
-  console.log(data)
-
   return (
     <div className="hotel">
           <h3>{data.attributes.Title}</h3>

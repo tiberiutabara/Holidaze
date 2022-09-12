@@ -14,6 +14,7 @@ import Hotel from "./pages/Hotel"
 import Login from "./pages/Login"
 import Admin from "./pages/Admin"
 import Owner from "./pages/Owner"
+import Message from "./pages/Message";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
 
             <Route path="/login" element={<Login />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/message/:id" element={<Message />} />
             <Route path="/owner" element={<Owner />} />
 
       </Routes>

@@ -1,32 +1,29 @@
 import { Link, useNavigate } from "react-router-dom";
-import axios from 'axios'
+import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 
 export default function Admin() {
-  const navigate = useNavigate()
-  const [messages, setMessages] = useState([])
-  const token = window.localStorage.getItem('JWT')
+  const navigate = useNavigate();
+  const [messages, setMessages] = useState([]);
+  const token = window.localStorage.getItem("JWT");
 
   useEffect(() => {
-
-    if (token == null) {
-      navigate('/login')
-    } else {
     const getMessages = async () => {
-      const { data } = await axios.get("http://localhost:1337/api/messages", {
-        headers: {
-          Authorization:
-            `Bearer ${token}`,
-        },
-      })
+      try {
+        const { data } = await axios.get("http://localhost:1337/api/messages", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setMessages(data.data);
+      } catch (err) {
+        navigate("/login");
+      }
+    };
 
-      setMessages(data.data)
-    }
-
-    getMessages()
-
-  }}, [])
+    getMessages();
+  }, []);
 
   return (
     <div>

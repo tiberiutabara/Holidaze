@@ -1,21 +1,40 @@
-import { Link } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
+import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios'
+import { useEffect } from "react";
+import { useState } from "react";
 
-export default async function Admin() {
-  const { loading, error, data } = useFetch(
-    "http://localhost:1337/api/messages"
-  );
+export default function Admin() {
+  const navigate = useNavigate()
+  const [messages, setMessages] = useState([])
+  const token = window.localStorage.getItem('JWT')
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error.</p>;
+  useEffect(() => {
+
+    if (token == null) {
+      navigate('/login')
+    } else {
+    const getMessages = async () => {
+      const { data } = await axios.get("http://localhost:1337/api/messages", {
+        headers: {
+          Authorization:
+            `Bearer ${token}`,
+        },
+      })
+
+      setMessages(data.data)
+    }
+
+    getMessages()
+
+  }}, [])
 
   return (
     <div>
       <h1>Admin</h1>
 
-      {data.length > 0 ? (
-        data &&
-        data.map((message) => (
+      {messages.length > 0 ? (
+        messages &&
+        messages.map((message) => (
           <div key={message.id} className="message-card">
             <h3>{message.attributes.subject}</h3>
             <p>by {message.attributes.name}</p>

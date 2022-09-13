@@ -5,6 +5,7 @@ import { useState } from "react";
 
 export default function Admin() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true)
   const [messages, setMessages] = useState([]);
   const token = window.localStorage.getItem("JWT");
 
@@ -17,17 +18,21 @@ export default function Admin() {
           },
         });
         setMessages(data.data);
+        setLoading(false)
       } catch (err) {
+        console.log(err)
         navigate("/login");
       }
     };
 
     getMessages();
-  }, []);
+  }, [navigate, token]);
 
   return (
     <div>
       <h1>Admin</h1>
+
+      {loading && <p>Loading...</p>}
 
       {messages.length > 0 ? (
         messages &&
@@ -39,7 +44,7 @@ export default function Admin() {
             <br /> <br />
           </div>
         ))
-      ) : (
+      ) : ( !loading &&
         <p>No messages</p>
       )}
     </div>

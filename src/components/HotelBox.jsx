@@ -1,13 +1,8 @@
-import useFetch from '../hooks/useFetch'
 import { Link } from 'react-router-dom'
 
 export default function HotelBox(props) {
 
-  // Fetch Data
-  const { loading, error, data } = useFetch('http://localhost:1337/api/hotels?populate=*')
-
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error.</p>
+  const data = props.data;
 
   return (
     <>

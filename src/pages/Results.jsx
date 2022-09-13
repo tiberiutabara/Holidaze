@@ -1,12 +1,29 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import HotelBox from '../components/HotelBox'
+import axios from "axios";
 
 export default function Results() {
   const [area, setArea] = useState('Anywhere')
+  const [results, setResults] = useState([])
+  const [loading, setLoading] = useState(true)
 
   const handleSubmit = (e) => {
     e.preventDefault()
   }
+
+  useEffect(() => {
+    const getResults = async () => {
+      try {
+        const { data } = await axios.get("http://localhost:1337/api/hotels?populate=*")
+        setLoading(false)
+        setResults(data.data)
+      } catch (err) {
+        console.log(err)
+      }
+    };
+
+    getResults()
+  }, []);
 
   return (
     <div className='results'>
@@ -30,7 +47,9 @@ export default function Results() {
     <button type='submit'>Submit</button>
     </form>
 
-      <HotelBox area={area} />
+      {loading && <p>Loading...</p>}
+
+      {results && <HotelBox area={area} data={results}/>}
     </div> 
   )
 }

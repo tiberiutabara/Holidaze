@@ -1,39 +1,63 @@
 import { useParams } from "react-router-dom"
-import useFetch from "../hooks/useFetch"
+import { useState, useEffect } from 'react'
+import axios from "axios"
 
 export default function Hotel() {
   const { id } = useParams()
-  const { loading, error, data } = useFetch('http://localhost:1337/api/hotels/' + id + '?populate=*')
+  const prefix = 'http://localhost:1337'
 
-  const prefix = 'http://localhost:1337';
+  const [hotel, setHotel] = useState(null)
+  const [loading, setLoading] = useState(true)
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error.</p>
+  useEffect(() => {
+    const getHotel = async () => {
+      try {
+        const { data } = await axios.get("http://localhost:1337/api/hotels/" + id + "?populate=*")
+        setLoading(false)
+        setHotel(data.data)
+
+      } catch (err) {
+        console.log(err)
+      }
+    };
+
+    getHotel()
+
+  }, [id]);
+  
 
   return (
-    <div className="hotel">
-          <h3>{data.attributes.Title}</h3>
-          <p>{data.attributes.Price}</p>
+    <div>
 
-          {data.attributes.WiFi && <p>WiFi</p>}
-          {data.attributes.Pets && <p>Pets Allowed</p>}
-          {data.attributes.Parking && <p>Parking</p>}
-          {data.attributes.Bathroom && <p>Private Bathroom</p>}
-          {data.attributes.Roomservice && <p>Room Service</p>}
-          {data.attributes.Food && <p>Restaurant</p>}
+          {loading && <p>Loading...</p>}
+
+          {hotel && (<div className="hotel">
+
+          <h3>{hotel.attributes.Title}</h3>
+          <p>{hotel.attributes.Price}</p>
+
+          {hotel.attributes.WiFi && <p>WiFi</p>}
+          {hotel.attributes.Pets && <p>Pets Allowed</p>}
+          {hotel.attributes.Parking && <p>Parking</p>}
+          {hotel.attributes.Bathroom && <p>Private Bathroom</p>}
+          {hotel.attributes.Roomservice && <p>Room Service</p>}
+          {hotel.attributes.Food && <p>Restaurant</p>}
 
 
-          <p>{data.attributes.Description}</p>
+          <p>{hotel.attributes.Description}</p>
 
           <p>Thumbnail:</p>
 
-          <img src={prefix + data.attributes.Thumbnail.data.attributes.url} alt={data.attributes.Title} />
+          <img src={prefix + hotel.attributes.Thumbnail.data.attributes.url} alt={hotel.attributes.Title} />
 
-          <p>Gallery:</p>
+          <p>Gallery:</p> 
 
-          <p>{data.attributes.Gallery.data.map(img => (
+
+          <p>{hotel.attributes.Gallery.data.map(img => (
             <img key={img.id} src={prefix + img.attributes.url} alt={img.attributes.name}/>
           ))}</p>
+
+          </div>)}
     </div>
   )
 }

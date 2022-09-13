@@ -1,21 +1,33 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import useFetch from '../hooks/useFetch'
+import { Link } from "react-router-dom";
+import { useState, useEffect } from 'react'
+import axios from "axios"
 
 export default function NewListings() {
+  const [recent, setRecent] = useState([])
+  const [loading, setLoading] = useState(true)
 
-    // Fetch Data
-  const { loading, error, data } = useFetch('http://localhost:1337/api/hotels?populate=*&sort=updatedAt:desc')
+  useEffect(() => {
+    const getRecent = async () => {
+      try {
+        const { data } = await axios.get("http://localhost:1337/api/hotels?populate=*&sort=publishedAt:desc")
+        setLoading(false)
+        setRecent(data.data)
+      } catch (err) {
+        console.log(err)
+      }
+    };
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error.</p>
+    getRecent()
+  }, []);
 
   return (
     <div>
     
     <h2>Newest Listings</h2>
 
-    {data.slice(0,6).map(hotel => (
+    {loading && <p>Loading...</p>}
+    {recent && (
+      recent.slice(0,6).map(hotel => (
 
         <div key={hotel.id} className="hotel-card">
         <h3>{hotel.attributes.Title}</h3>
@@ -24,7 +36,9 @@ export default function NewListings() {
         <br /> <br />
         </div> 
 
-    ))}
+      ))
+    )}
+
     </div>
   )
 }

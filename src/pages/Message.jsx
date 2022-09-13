@@ -1,16 +1,32 @@
 import { useNavigate, useParams } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
+import { useState, useEffect } from 'react'
+import axios from "axios"
 
 export default function Message() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const { id } = useParams()
+  const [message, setMessage] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const token = window.localStorage.getItem("JWT");
 
-  const { id } = useParams();
-  const { loading, error, data } = useFetch(
-    "http://localhost:1337/api/messages/" + id
-  );
+  useEffect(() => {
+    const getMessage = async () => {
+      try {
+        const { data } = await axios.get("http://localhost:1337/api/messages/" + id, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        setLoading(false)
+        setMessage(data.data)
+      } catch (err) {
+        console.log(err)
+        navigate("/login");
+      }
+    };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error.</p>;
+    getMessage()
+  }, [id, navigate, token]);
 
   // delete
 
@@ -20,6 +36,9 @@ export default function Message() {
         "http://localhost:1337/api/messages/" + id,
         {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
 
@@ -33,14 +52,19 @@ export default function Message() {
 
   return (
     <div className="message">
-      <h3>{data.attributes.subject}</h3>
-      <p>
-        by {data.attributes.name}, email: {data.attributes.email}
-      </p>
-      <p>Category: {data.attributes.category}</p>
-      <br />
-      <p>{data.attributes.message}</p>
-      <button onClick={() => deleteData()}>Delete</button>
+
+      {loading && <p>Loading...</p>}
+
+      {message && ( <div>
+        <h3>{message.attributes.subject}</h3>
+        <p>
+          by {message.attributes.name}, email: {message.attributes.email}
+        </p>
+        <p>Category: {message.attributes.category}</p>
+        <br />
+        <p>{message.attributes.message}</p>
+        <button onClick={() => deleteData()}>Delete</button>
+      </div>)}
     </div>
   );
 }

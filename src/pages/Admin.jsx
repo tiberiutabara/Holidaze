@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
-export default function Admin() {
+export default async function Admin() {
   const { loading, error, data } = useFetch(
     "http://localhost:1337/api/messages"
   );

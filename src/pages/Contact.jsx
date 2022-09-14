@@ -103,7 +103,7 @@ export default function Contact() {
             onChange={(e) => setCategory(e.target.value)}
           >
             <option value="Hotel Listings">Hotel Listings</option>
-            <option value="Bug repport">Bug repport</option>
+            <option value="Technical Support">Technical Support</option>
             <option value="Career">Career</option>
           </select>
           {errors.category && <span>{errors.category.message}</span>}

@@ -7,6 +7,7 @@ const {REACT_APP_URL} = process.env
 
 export default function Admin() {
   const navigate = useNavigate();
+  const [category, setCategory] = useState('All')
   const [loading, setLoading] = useState(true)
   const [messages, setMessages] = useState([]);
   const token = window.localStorage.getItem("JWT");
@@ -28,23 +29,44 @@ export default function Admin() {
     };
 
     getMessages();
+
   }, [navigate, token]);
 
   return (
     <div>
       <h1>Admin</h1>
 
+      <label> <span>Category: </span>
+        <select 
+          id="area" 
+          required
+          onChange={(e) => setCategory(e.target.value)}
+        >
+            <option value="All">All</option>
+            <option value="Hotel Listings">Hotel Listings</option>
+            <option value="Technical Support">Technical Support</option>
+            <option value="Career">Career</option>
+        </select>
+      </label>
+
       {loading && <p>Loading...</p>}
 
       {messages.length > 0 ? (
         messages &&
         messages.map((message) => (
+
+        message.attributes.category === category || category === 'All' ?
+
           <div key={message.id} className="message-card">
+            <p>{message.attributes.category}</p>
             <h3>{message.attributes.subject}</h3>
             <p>by {message.attributes.name}</p>
             <Link to={`/message/${message.id}`}>Details</Link>
             <br /> <br />
           </div>
+
+        : null
+
         ))
       ) : ( !loading &&
         <p>No messages</p>

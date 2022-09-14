@@ -9,7 +9,7 @@ export default function HotelBox(props) {
     {data.map(hotel => (
 
       // Filter Area - set
-      hotel.attributes.Area === props.area ?
+      hotel.attributes.Area === props.area || props.area === 'Anywhere' ?
 
       <div key={hotel.id} className="hotel-card">
         <h3>{hotel.attributes.Title}</h3>
@@ -17,19 +17,8 @@ export default function HotelBox(props) {
         <Link to={`/Hotel/${hotel.id}`}>Details</Link>
         <br /> <br />
       </div> 
-      
-      :
-      
-      props.area === 'Anywhere' ?
 
-      <div key={hotel.id} className="hotel-card">
-        <h3>{hotel.attributes.Title}</h3>
-        <p>{hotel.attributes.Price}</p>
-        <Link to={`/Hotel/${hotel.id}`}>Details</Link>
-        <br /> <br />
-      </div> 
-      
-      : null
+      : null 
 
     ))}
     </>

@@ -9,10 +9,6 @@ export default function Results() {
   const [results, setResults] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-  }
-
   useEffect(() => {
     const getResults = async () => {
       try {
@@ -30,9 +26,6 @@ export default function Results() {
   return (
     <div className='results'>
 
-    <form onSubmit={handleSubmit}>
-
-
     <label> <span>Choose Area: </span>
         <select 
           id="area" 
@@ -45,9 +38,6 @@ export default function Results() {
             <option value="Rural">Rural</option>
         </select>
     </label>
-
-    <button type='submit'>Submit</button>
-    </form>
 
       {loading && <p>Loading...</p>}
 

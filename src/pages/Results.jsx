@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import HotelBox from '../components/HotelBox'
 import axios from "axios";
 
+const {REACT_APP_URL} = process.env
+
 export default function Results() {
   const [area, setArea] = useState('Anywhere')
   const [results, setResults] = useState([])
@@ -14,7 +16,7 @@ export default function Results() {
   useEffect(() => {
     const getResults = async () => {
       try {
-        const { data } = await axios.get("http://localhost:1337/api/hotels?populate=*")
+        const { data } = await axios.get(`${REACT_APP_URL}/api/hotels?populate=*`)
         setLoading(false)
         setResults(data.data)
       } catch (err) {

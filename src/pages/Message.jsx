@@ -2,6 +2,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import axios from "axios"
 
+const {REACT_APP_URL} = process.env
+
 export default function Message() {
   const navigate = useNavigate()
   const { id } = useParams()
@@ -12,7 +14,7 @@ export default function Message() {
   useEffect(() => {
     const getMessage = async () => {
       try {
-        const { data } = await axios.get("http://localhost:1337/api/messages/" + id, {
+        const { data } = await axios.get(`${REACT_APP_URL}/api/messages/` + id, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -33,7 +35,7 @@ export default function Message() {
   const deleteData = () => {
     async function deleteMessage() {
       const deleteMessage = await fetch(
-        "http://localhost:1337/api/messages/" + id,
+        `${REACT_APP_URL}/api/messages/` + id,
         {
           method: "DELETE",
           headers: {

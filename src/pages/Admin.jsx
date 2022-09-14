@@ -3,6 +3,8 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 
+const {REACT_APP_URL} = process.env
+
 export default function Admin() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true)
@@ -12,7 +14,7 @@ export default function Admin() {
   useEffect(() => {
     const getMessages = async () => {
       try {
-        const { data } = await axios.get("http://localhost:1337/api/messages", {
+        const { data } = await axios.get(`${REACT_APP_URL}/api/messages`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import axios from "axios"
 
+const {REACT_APP_URL} = process.env
+
 export default function NewListings() {
   const [recent, setRecent] = useState([])
   const [loading, setLoading] = useState(true)
@@ -9,7 +11,7 @@ export default function NewListings() {
   useEffect(() => {
     const getRecent = async () => {
       try {
-        const { data } = await axios.get("http://localhost:1337/api/hotels?populate=*&sort=publishedAt:desc")
+        const { data } = await axios.get(`${REACT_APP_URL}/api/hotels?populate=*&sort=publishedAt:desc`)
         setLoading(false)
         setRecent(data.data)
       } catch (err) {

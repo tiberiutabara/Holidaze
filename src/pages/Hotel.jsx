@@ -2,9 +2,11 @@ import { useParams } from "react-router-dom"
 import { useState, useEffect } from 'react'
 import axios from "axios"
 
+const {REACT_APP_URL} = process.env
+
 export default function Hotel() {
   const { id } = useParams()
-  const prefix = 'http://localhost:1337'
+  const prefix = REACT_APP_URL
 
   const [hotel, setHotel] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -12,7 +14,7 @@ export default function Hotel() {
   useEffect(() => {
     const getHotel = async () => {
       try {
-        const { data } = await axios.get("http://localhost:1337/api/hotels/" + id + "?populate=*")
+        const { data } = await axios.get(`${REACT_APP_URL}/api/hotels/` + id + "?populate=*")
         setLoading(false)
         setHotel(data.data)
 

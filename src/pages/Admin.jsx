@@ -65,7 +65,7 @@ export default function Admin() {
             <br /> <br />
           </div>
 
-        : null
+        : <p>No messages on this category</p>
 
         ))
       ) : ( !loading &&

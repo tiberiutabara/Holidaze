@@ -8,6 +8,7 @@ export default function Home() {
 
       <Link to="/results">Results</Link>
       <Link to="/admin">Admin</Link>
+      <Link to="/owner">Owner</Link>
 
       <NewListings />
     </div>

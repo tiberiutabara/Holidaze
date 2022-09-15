@@ -1,4 +1,8 @@
 import { useState } from 'react'
+import { useForm } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
+import { hotelSchema } from "../validations/HotelValidation";
+import { useNavigate } from 'react-router-dom';
 
 function RegisterHotel() {
     const [title, setTitle] = useState("")
@@ -14,7 +18,15 @@ function RegisterHotel() {
     const [roomservice, setRoomservice] = useState(false)
     const [food, setFood] = useState(false)
 
-    const onSubmit = (e) => {
+    const navigate = useNavigate()
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+      } = useForm({ resolver: yupResolver(hotelSchema) });
+
+    const onSubmit = async () => {
 
         async function addHotel(){
 
@@ -56,29 +68,32 @@ function RegisterHotel() {
         }
 
         addHotel()
+        alert('Hotel added successfully')
+        navigate('/')
     }
 
   return (
     <div>
         <h2>Add New Hotel</h2> 
 
-        {!wifi ? <p>Wifi false</p> : <p>Wifi true</p>}
-
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <label> <span> Hotel Name </span>
-                <input type='text' value={title} name="Title" onChange={(e) => setTitle(e.target.value)} />
+                <input {...register("Title")} type='text' value={title} name="Title" onChange={(e) => setTitle(e.target.value)} />
+                {errors.Title && <span>{errors.Title.message}</span>}
             </label>
 
             <br /> <br />
 
             <label> <span> Price Per Night </span>
-                <input type='number' value={price} name="Price" onChange={(e) => setPrice(e.target.value)}  />
+                <input {...register("Price")} type='number' value={price} name="Price" onChange={(e) => setPrice(e.target.value)}  />
+                {errors.Price && <span>{errors.Price.message}</span>}
             </label>
 
             <br /> <br />
 
             <label> <span> Location </span>
                 <select
+                    {...register("Area")}
                     value={area}
                     onChange={(e) => setArea(e.target.value)}
                     name="Area"
@@ -87,6 +102,7 @@ function RegisterHotel() {
                     <option value="Urban">Urban</option>
                     <option value="Rural">Rural</option>
                 </select>
+                {errors.Area && <span>{errors.Area.message}</span>}
             </label>
 
             <br /> <br />
@@ -94,40 +110,48 @@ function RegisterHotel() {
             <div> <span> Options </span> <br />
 
                 <label> <span> WiFi </span>
-                    <input type="checkbox" name="WiFi" onChange={() => setWifi(!wifi)} />
+                    <input {...register("WiFi")} type="checkbox" name="WiFi" onChange={() => setWifi(!wifi)} />
+                    {errors.WiFi && <span>{errors.WiFi.message}</span>}
                 </label> <br />
 
                 <label> <span> Pets Allowed</span>
-                    <input type="checkbox" name="Pets" onChange={() => setPets(!pets)} />
+                    <input {...register("Pets")} type="checkbox" name="Pets" onChange={() => setPets(!pets)} />
+                    {errors.Pets && <span>{errors.Pets.message}</span>}
                 </label> <br />
 
                 <label> <span> Parking </span>
-                    <input type="checkbox" name="Parking" onChange={() => setParking(!parking)} />
+                    <input {...register("Parking")} type="checkbox" name="Parking" onChange={() => setParking(!parking)} />
+                    {errors.Parking && <span>{errors.Parking.message}</span>}
                 </label> <br />
 
                 <label> <span> Private Bathroom </span>
-                    <input type="checkbox" name="Bathroom" onChange={() => setBathroom(!bathroom)} />
+                    <input {...register("Bathroom")} type="checkbox" name="Bathroom" onChange={() => setBathroom(!bathroom)} />
+                    {errors.Bathroom && <span>{errors.Bathroom.message}</span>}
                 </label> <br />
 
                 <label> <span> Roomservice </span>
-                    <input type="checkbox" name="Roomservice" onChange={() => setRoomservice(!roomservice)} />
+                    <input {...register("Roomservice")} type="checkbox" name="Roomservice" onChange={() => setRoomservice(!roomservice)} />
+                    {errors.Roomservice && <span>{errors.Roomservice.message}</span>}               
                 </label> <br />
 
                 <label> <span> Food Available </span>
-                    <input type="checkbox" name="Food" onChange={() => setFood(!food)}/>
+                    <input {...register("Food")} type="checkbox" name="Food" onChange={() => setFood(!food)}/>
+                    {errors.Food && <span>{errors.Food.message}</span>}
                 </label> <br />
             </div>
 
             <br /> <br />
 
             <label> <span> Thumbnail </span>
-                <input type='file' accept="image/*" name="Thumbnail" onChange={(e) => setThumbnail(e.target.files[0])}/>
+                <input {...register("Thumbnail")} type='file' accept="image/*" name="Thumbnail" onChange={(e) => setThumbnail(e.target.files[0])} required/>
+                {errors.Thumbnail && <span>{errors.Thumbnail.message}</span>}
             </label>
 
             <br /> <br />
 
             <label> <span> Gallery </span>
-                <input type='file' accept="image/*" name="Gallery" multiple="multiple" onChange={(e) => setGallery(e.target.files)}/>
+                <input {...register("Gallery")} type='file' accept="image/*" name="Gallery" multiple="multiple" onChange={(e) => setGallery(e.target.files)} required/>
+                {errors.Gallery && <span>{errors.Gallery.message}</span>}
             </label>
 
             <br /> <br />
@@ -136,8 +160,10 @@ function RegisterHotel() {
             {" "}
             <span> Description</span>
             <textarea
+                {...register("Description")}
                 value={description} name="Description" onChange={(e) => setDescription(e.target.value)}
             ></textarea>
+            {errors.Description && <span>{errors.Description.message}</span>}
             </label>
 
             <br /> <br />

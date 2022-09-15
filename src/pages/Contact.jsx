@@ -37,11 +37,11 @@ export default function Contact() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ data: messageContent }),
-      });
+      })
 
-      const addResponse = await add.json();
+      const addResponse = await add.json()
 
-      console.log(addResponse);
+      console.log(addResponse)
     }
 
     addMessage();

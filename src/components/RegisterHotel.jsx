@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useState } from 'react'
 
 function RegisterHotel() {
@@ -7,32 +8,73 @@ function RegisterHotel() {
     const [thumbnail, setThumbnail] = useState(null)
     const [gallery, setGallery] = useState(null)
     const [description, setDescription] = useState("")
-    const [wifi, setWifi] = useState(null)
-    const [pets, setPets] = useState(null)
-    const [parking, setParking] = useState(null)
-    const [bathroom, setBathroom] = useState(null)
-    const [roomservice, setRoomservice] = useState(null)
-    const [food, setFood] = useState(null)
+    const [wifi, setWifi] = useState(false)
+    const [pets, setPets] = useState(false)
+    const [parking, setParking] = useState(false)
+    const [bathroom, setBathroom] = useState(false)
+    const [roomservice, setRoomservice] = useState(false)
+    const [food, setFood] = useState(false)
 
-    const handleSubmit = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault()
 
-        console.log(thumbnail, gallery)
+        async function addHotel(){
+
+            const formData = new FormData()
+
+            // data from form
+
+            const data = {
+                Title: title,
+                Area: area,
+                Description: description,
+                Price: price,
+                WiFi: wifi,
+                Pets: pets,
+                Parking: parking,
+                Bathroom: bathroom,
+                Roomservice: roomservice,
+                Food: food,
+            }
+
+            formData.set('data', JSON.stringify(data))
+
+            // thumbnail
+            formData.append('files.Thumbnail', thumbnail)
+
+            // gallery
+            for (let i = 0; i < gallery.length; i++){
+                formData.append('files.Gallery', gallery[i])
+            }
+
+            const add = await fetch("http://localhost:1337/api/hotels", {
+                method: "POST",
+                headers: {},
+                body: formData,
+            })
+
+            const addResponse = await add.json()
+            console.log(addResponse)
+        }
+
+        addHotel()
     }
 
   return (
     <div>
         <h2>Add New Hotel</h2> 
 
-        <form onSubmit={handleSubmit}>
+        {!wifi ? <p>Wifi false</p> : <p>Wifi true</p>}
+
+        <form onSubmit={onSubmit}>
             <label> <span> Hotel Name </span>
-                <input type='text' value={title} onChange={(e) => setTitle(e.target.value)} />
+                <input type='text' value={title} name="Title" onChange={(e) => setTitle(e.target.value)} />
             </label>
 
             <br /> <br />
 
             <label> <span> Price Per Night </span>
-                <input type='text' value={price} onChange={(e) => setPrice(e.target.value)}  />
+                <input type='text' value={price} name="Price" onChange={(e) => setPrice(e.target.value)}  />
             </label>
 
             <br /> <br />
@@ -41,6 +83,7 @@ function RegisterHotel() {
                 <select
                     value={area}
                     onChange={(e) => setArea(e.target.value)}
+                    name="Area"
                 >
                     <option value="City Center">City Center</option>
                     <option value="Urban">Urban</option>
@@ -53,40 +96,40 @@ function RegisterHotel() {
             <div> <span> Options </span> <br />
 
                 <label> <span> WiFi </span>
-                    <input type="checkbox" onChange={(e) => setWifi(e.target.value)} />
+                    <input type="checkbox" name="WiFi" onChange={() => setWifi(!wifi)} />
                 </label> <br />
 
                 <label> <span> Pets Allowed</span>
-                    <input type="checkbox" onChange={(e) => setPets(e.target.value)} />
+                    <input type="checkbox" name="Pets" onChange={() => setPets(!pets)} />
                 </label> <br />
 
                 <label> <span> Parking </span>
-                    <input type="checkbox" onChange={(e) => setParking(e.target.value)} />
+                    <input type="checkbox" name="Parking" onChange={() => setParking(!parking)} />
                 </label> <br />
 
                 <label> <span> Private Bathroom </span>
-                    <input type="checkbox" onChange={(e) => setBathroom(e.target.value)} />
+                    <input type="checkbox" name="Bathroom" onChange={() => setBathroom(!bathroom)} />
                 </label> <br />
 
                 <label> <span> Roomservice </span>
-                    <input type="checkbox" onChange={(e) => setRoomservice(e.target.value)} />
+                    <input type="checkbox" name="Roomservice" onChange={() => setRoomservice(!roomservice)} />
                 </label> <br />
 
                 <label> <span> Food Available </span>
-                    <input type="checkbox" onChange={(e) => setFood(e.target.value)}/>
+                    <input type="checkbox" name="Food" onChange={() => setFood(!food)}/>
                 </label> <br />
             </div>
 
             <br /> <br />
 
             <label> <span> Thumbnail </span>
-                <input type='file' accept="image/*" onChange={(e) => setThumbnail(e.target.files[0])}/>
+                <input type='file' accept="image/*" name="Thumbnail" onChange={(e) => setThumbnail(e.target.files[0])}/>
             </label>
 
             <br /> <br />
 
             <label> <span> Gallery </span>
-                <input type='file' accept="image/*" multiple="multiple" onChange={(e) => setGallery(e.target.files)}/>
+                <input type='file' accept="image/*" name="Gallery" multiple="multiple" onChange={(e) => setGallery(e.target.files)}/>
             </label>
 
             <br /> <br />
@@ -95,7 +138,7 @@ function RegisterHotel() {
             {" "}
             <span> Description</span>
             <textarea
-                value={description} onChange={(e) => setDescription(e.target.value)}
+                value={description} name="Description" onChange={(e) => setDescription(e.target.value)}
             ></textarea>
             </label>
 

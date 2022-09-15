@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useState } from 'react'
 
 function RegisterHotel() {
@@ -16,7 +15,6 @@ function RegisterHotel() {
     const [food, setFood] = useState(false)
 
     const onSubmit = (e) => {
-        e.preventDefault()
 
         async function addHotel(){
 
@@ -74,7 +72,7 @@ function RegisterHotel() {
             <br /> <br />
 
             <label> <span> Price Per Night </span>
-                <input type='text' value={price} name="Price" onChange={(e) => setPrice(e.target.value)}  />
+                <input type='number' value={price} name="Price" onChange={(e) => setPrice(e.target.value)}  />
             </label>
 
             <br /> <br />

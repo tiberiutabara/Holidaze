@@ -4,6 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { hotelSchema } from "../validations/HotelValidation";
 import { useNavigate } from 'react-router-dom';
 
+const {REACT_APP_URL} = process.env
+
 function RegisterHotel() {
     const [title, setTitle] = useState("")
     const [price, setPrice] = useState(0)
@@ -57,7 +59,7 @@ function RegisterHotel() {
                 formData.append('files.Gallery', gallery[i])
             }
 
-            const add = await fetch("http://localhost:1337/api/hotels", {
+            const add = await fetch(`${REACT_APP_URL}/api/hotels`, {
                 method: "POST",
                 headers: {},
                 body: formData,

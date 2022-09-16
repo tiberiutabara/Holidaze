@@ -1,12 +1,5 @@
 import * as yup from 'yup'
 
-const SUPPORTED_FORMATS = [
-    "image/jpg",
-    "image/jpeg",
-    "image/gif",
-    "image/png"
-  ];
-
 export const hotelSchema = yup.object().shape({
     Title: yup.string().min(3, 'Must be at least 3 characters').max(24, 'Cannot exceed 24 characters').required('Required'),
     Price: yup.number('Must be a number').min(100, "Value must be at least 100").max(99999, "Value cant exceed 99999 per night").integer('Must be an integer').required('Required'),

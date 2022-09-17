@@ -15,6 +15,7 @@ import Login from "./pages/Login"
 import Admin from "./pages/Admin"
 import Owner from "./pages/Owner"
 import Message from "./pages/Message";
+import Enquiry from "./pages/Enquiry";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/admin" element={<Admin />} />
             <Route path="/message/:id" element={<Message />} />
             <Route path="/owner" element={<Owner />} />
+            <Route path="/enquiry/:id" element={<Enquiry />} />
 
       </Routes>
     </div>

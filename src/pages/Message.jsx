@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom"
 import { useState, useEffect } from 'react'
 import axios from "axios"
 
@@ -9,7 +9,7 @@ export default function Message() {
   const { id } = useParams()
   const [message, setMessage] = useState(null)
   const [loading, setLoading] = useState(true)
-  const token = window.localStorage.getItem("JWT");
+  const token = window.localStorage.getItem("JWT")
 
   useEffect(() => {
     const getMessage = async () => {
@@ -23,18 +23,18 @@ export default function Message() {
         setMessage(data.data)
       } catch (err) {
         console.log(err)
-        navigate("/login");
+        navigate("/login")
       }
     };
 
     getMessage()
-  }, [id, navigate, token]);
+  }, [id, navigate, token])
 
   // delete
 
   const deleteData = () => {
     async function deleteMessage() {
-      const deleteMessage = await fetch(
+      const deleteMessageData = await fetch(
         `${REACT_APP_URL}/api/messages/` + id,
         {
           method: "DELETE",
@@ -42,15 +42,15 @@ export default function Message() {
             Authorization: `Bearer ${token}`,
           },
         }
-      );
+      )
 
-      const deleteResponse = await deleteMessage.json();
-      console.log(deleteResponse);
+      const deleteResponse = await deleteMessageData.json()
+      console.log(deleteResponse)
     }
 
-    deleteMessage();
-    navigate("/admin");
-  };
+    deleteMessage()
+    navigate("/admin")
+  }
 
   return (
     <div className="message">
@@ -65,8 +65,8 @@ export default function Message() {
         <p>Category: {message.attributes.category}</p>
         <br />
         <p>{message.attributes.message}</p>
-        <button onClick={() => deleteData()}>Delete</button>
+        <button onClick={() => {window.confirm('Are you sure that you want to delete this message?') === true ? deleteData() : alert('Delete process cancelled.')}}>Delete</button>
       </div>)}
     </div>
-  );
+  )
 }

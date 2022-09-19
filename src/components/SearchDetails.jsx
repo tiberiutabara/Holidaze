@@ -63,6 +63,7 @@ export default function SearchDetails() {
           <option value="Rural">Rural</option>
         </select>
       </label>{" "}
+      
       <label>
         {" "}
         <span>
@@ -77,56 +78,60 @@ export default function SearchDetails() {
           rangeColors={["#D89E1A"]}
         />
       </label>{" "}
+
       <label>
         {" "}
         <span>{`${guests.adult} adult . ${guests.children} children . ${guests.room} room`}</span>
         <div className="guests">
           <span>
             Adults
-            <button
-              disabled={guests.adult >= 10}
-              onClick={() => handleGuests("adult", "i")}
-            >
-              +
-            </button>
-            <span>{guests.adult}</span>
+            
             <button
               disabled={guests.adult <= 1}
               onClick={() => handleGuests("adult", "d")}
             >
               -
             </button>
-          </span>{" "}
-          <span>
-            Children
+            <span>{guests.adult}</span>
             <button
-              disabled={guests.children >= 10}
-              onClick={() => handleGuests("children", "i")}
+              disabled={guests.adult >= 10}
+              onClick={() => handleGuests("adult", "i")}
             >
               +
             </button>
-            <span>{guests.children}</span>
+          </span>{" "}
+
+          <span>
+            Children
             <button
               disabled={guests.children <= 0}
               onClick={() => handleGuests("children", "d")}
             >
               -
             </button>
-          </span>{" "}
-          <span>
-            Room
+            <span>{guests.children}</span>
             <button
-              disabled={guests.room >= 10}
-              onClick={() => handleGuests("room", "i")}
+              disabled={guests.children >= 10}
+              onClick={() => handleGuests("children", "i")}
             >
               +
             </button>
-            <span>{guests.room}</span>
+          </span>{" "}
+
+          <span>
+            Room
             <button
               disabled={guests.room <= 1}
               onClick={() => handleGuests("room", "d")}
             >
               -
+            </button>
+            <span>{guests.room}</span>
+            <button
+              disabled={guests.room >= 10}
+              onClick={() => handleGuests("room", "i")}
+            >
+              +
             </button>
           </span>
         </div>

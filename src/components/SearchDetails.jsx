@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // date range
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
-import { useEffect } from "react";
 
 export default function SearchDetails() {
   const [location, setLocation] = useState("Anywhere");
@@ -44,13 +44,11 @@ export default function SearchDetails() {
   };
 
   // submit
+  const navigate = useNavigate()
 
   const onSubmit = () => {
-    console.log(location);
-    console.log(guests);
-    console.log(typeof fromDate);
-    console.log(toDate);
-  };
+    navigate('/results', {state: {location, guests, fromDate, toDate}})
+  }
 
   return (
     <div className="search-details">

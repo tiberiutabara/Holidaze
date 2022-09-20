@@ -47,7 +47,16 @@ export default function SearchDetails() {
   const navigate = useNavigate()
 
   const onSubmit = () => {
-    navigate('/results', {state: {location, guests, fromDate, toDate}})
+    navigate('/results')
+
+    const data = JSON.stringify({
+      location: location, 
+      guests: guests, 
+      fromDate: fromDate, 
+      toDate: toDate
+    })
+    
+    localStorage.setItem('data', data)
   }
 
   return (

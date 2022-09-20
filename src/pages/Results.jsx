@@ -1,16 +1,23 @@
 import { useState, useEffect } from "react";
 import HotelBox from "../components/HotelBox";
 import axios from "axios";
-import ResultsDetails from "../components/ResultsDetails";
-import { useLocation } from "react-router-dom";
 import SearchSpecific from "../components/SearchSpecific";
+import { useNavigate } from "react-router-dom";
 
 const { REACT_APP_URL } = process.env;
 
 export default function Results() {
-  const loc = useLocation();
+  const navigate = useNavigate()
+  const data = JSON.parse(localStorage.getItem('data'))
 
-  const [area, setArea] = useState(loc.state.location);
+  useEffect(() => {
+      if (!data){
+        alert('Please insert search data before entering this page')
+        navigate("/")
+     }
+  },[]);
+
+  const [area, setArea] = useState(data ? data.location : 'Anywhere');
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -28,18 +35,11 @@ export default function Results() {
     };
 
     getResults();
+
   }, []);
 
   return (
-    <div className="results">
-      <ResultsDetails
-        location={loc.state.location}
-        guests={loc.state.guests}
-        fromDate={loc.state.fromDate}
-        toDate={loc.state.toDate}
-      /> 
-      <br />
-
+    <div className="results"> 
       <SearchSpecific /> 
       <br />
 
@@ -61,16 +61,17 @@ export default function Results() {
 
       {loading && <p>Loading...</p>}
 
-      {results && (
+      {results && data ? (
         <HotelBox
           area={area}
           data={results}
-          location={loc.state.location}
-          guests={loc.state.guests}
-          fromDate={loc.state.fromDate}
-          toDate={loc.state.toDate}
+          location={data.location}
+          guests={data.guests}
+          fromDate={data.fromDate}
+          toDate={data.toDate}
         />
-      )}
-    </div>
-  );
-}
+      ) : null}
+      
+    </div> 
+  )
+} 

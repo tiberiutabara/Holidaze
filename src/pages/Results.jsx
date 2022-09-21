@@ -15,7 +15,7 @@ export default function Results() {
         alert('Please insert search data before entering this page')
         navigate("/")
      }
-  },[]);
+  },[data, navigate]);
 
   const [area, setArea] = useState(data ? data.location : 'Anywhere');
   const [results, setResults] = useState([]);

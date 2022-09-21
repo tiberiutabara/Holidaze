@@ -40,7 +40,7 @@ export default function Results() {
 
   return (
     <div className="results"> 
-      <SearchSpecific /> 
+      <SearchSpecific data={results && results}/> 
       <br />
 
       <label>

@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const { REACT_APP_URL } = process.env;
+
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -16,7 +18,7 @@ export default function Login() {
       password: password,
     };
 
-    const login = await fetch(`http://localhost:1337/api/auth/local`, {
+    const login = await fetch(`${REACT_APP_URL}/api/auth/local`, {
       method: "POST",
 
       headers: {
@@ -29,15 +31,18 @@ export default function Login() {
     });
 
     const loginResponseData = await login.json();
+    
+    if (loginResponseData.data === null) {
+      alert('Wrong email or password')
+      localStorage.removeItem("JWT")
+    } 
 
+    else {
     window.localStorage.setItem('JWT', loginResponseData.jwt)
     navigate('/')
+    } 
+    
   };
-
-  const logout = () => {
-    window.localStorage.removeItem('JWT')
-    navigate('/')
-  }
 
   return (
     <div className="login">
@@ -65,8 +70,6 @@ export default function Login() {
 
         <button>Log In</button>
       </form>
-
-      <button onClick={() => logout()}>Log Out</button>
     </div>
   );
 }

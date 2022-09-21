@@ -31,6 +31,7 @@ export default function Login() {
     });
 
     const loginResponseData = await login.json();
+    console.log(loginResponseData)
     
     if (loginResponseData.data === null) {
       alert('Wrong email or password')
@@ -38,8 +39,13 @@ export default function Login() {
     } 
 
     else {
-    window.localStorage.setItem('JWT', loginResponseData.jwt)
-    navigate('/')
+    localStorage.setItem('JWT', loginResponseData.jwt)
+    localStorage.setItem('role', loginResponseData.user.roleType)
+
+    const role = localStorage.getItem('role')
+
+    role === 'admin' && navigate('/admin')
+    role === 'owner' && navigate('/owner')
     } 
     
   };

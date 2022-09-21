@@ -6,10 +6,12 @@ import { FaMoon } from 'react-icons/fa'
 
 export default function Header() {
   const token = window.localStorage.getItem("JWT")
+  const role = localStorage.getItem('role')
   const navigate = useNavigate()
 
   const logout = () => {
-    window.localStorage.removeItem('JWT')
+    localStorage.removeItem('JWT')
+    localStorage.removeItem('role')
     navigate('/')
   }
 
@@ -20,6 +22,17 @@ export default function Header() {
         
         <div className="menu">
           <ul className="navigation">
+
+            { role === 'admin' ?
+              <li><Link style={{color: '#D89E1A'}} to="/admin">Admin</Link></li>
+
+              : role === 'owner' ?
+              <li><Link style={{color: '#D89E1A'}} to="/owner">Admin</Link></li>
+
+              : null
+            }
+
+
               <li><Link to="/">Home</Link></li>
               <li><Link to="/about">About</Link></li>
               <li><Link to="/contact">Contact</Link></li>

@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { contactSchema } from "../validations/ContactValidation";
 
+const {REACT_APP_URL} = process.env
+
 export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -27,10 +29,9 @@ export default function Contact() {
       };
 
       const isValid = await contactSchema.isValid(messageContent);
-
       isValid && alert("Form submited successfully");
 
-      const add = await fetch("http://localhost:1337/api/messages", {
+      const add = await fetch(`${REACT_APP_URL}/api/messages`, {
         method: "POST",
         headers: {
           Accept: "application/json",

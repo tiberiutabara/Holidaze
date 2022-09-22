@@ -61,7 +61,8 @@ export default function Enquiry() {
 
       {enquiry && (
         <div>
-          <h3>for: {enquiry.attributes.Name}</h3>
+          <h3>For: {enquiry.attributes.Name}</h3>
+          <p>Rquested hotel: {enquiry.attributes.Hotel}</p>
           <p>Email: {enquiry.attributes.Email}</p>
           <p>
             {enquiry.attributes.Room} Room for {enquiry.attributes.Adults}{" "}

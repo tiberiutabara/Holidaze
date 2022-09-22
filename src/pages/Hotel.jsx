@@ -25,7 +25,7 @@ export default function Hotel() {
     };
 
     getHotel()
-
+    
   }, [id]);
   
 

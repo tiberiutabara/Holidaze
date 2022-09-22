@@ -16,6 +16,6 @@ export const contactSchema = yup.object().shape({
   message: yup
     .string()
     .min(10, "Must be at least 10 characters")
-    .max(200, "Cannot exceed 200 characters")
+    .max(500, "Cannot exceed 500 characters")
     .required("Required"),
 });

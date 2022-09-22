@@ -24,6 +24,6 @@ export const hotelSchema = yup.object().shape({
   Description: yup
     .string()
     .min(10, "Must be at least 10 characters")
-    .max(200, "Cannot exceed 200 characters")
+    .max(1000, "Cannot exceed 1000 characters")
     .required("Required"),
 });

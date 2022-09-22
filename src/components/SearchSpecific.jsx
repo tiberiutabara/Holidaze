@@ -12,7 +12,7 @@ export default function SearchSpecific(props) {
         .includes(text.toLowerCase().replace(/\s+/g, ""))
     );
     text.length >= 1 ? setResults(filteredResults) : setResults(null);
-  }, [text]);
+  }, [text, props.data]);
 
   return (
     <>

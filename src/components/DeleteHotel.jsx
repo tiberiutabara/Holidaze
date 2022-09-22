@@ -42,12 +42,13 @@ export default function DeleteHotel() {
     }
 
     deleteSelectedHotel();
+    console.log(hotelID)
     navigate("/");
   };
 
   return (
     <div>
-      <h3>Delete a hotel</h3>
+      <h3>Delete a hotel {hotelID}</h3>
 
       <select onChange={(e) => setHotelID(e.target.value)}>
         {hotel &&
@@ -55,7 +56,7 @@ export default function DeleteHotel() {
             <option key={hotel.id} value={hotel.id}>
               {hotel.attributes.Title}
             </option>
-          ))}
+          ))} 
       </select>
       <button
         onClick={() => {

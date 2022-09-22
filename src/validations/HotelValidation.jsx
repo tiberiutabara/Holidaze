@@ -4,7 +4,7 @@ export const hotelSchema = yup.object().shape({
   Title: yup
     .string()
     .min(3, "Must be at least 3 characters")
-    .max(24, "Cannot exceed 24 characters")
+    .max(50, "Cannot exceed 50 characters")
     .required("Required"),
   Price: yup
     .number("Must be a number")

@@ -57,7 +57,7 @@ export default function Contact() {
   return (
     <div className="contact">
       <h1>For collaboration proposals,</h1>
-      <h2>Don't heistate to get in touch</h2>
+      <h2>Don't hesitate to get in touch</h2>
       <br /> <br />
       <form className="contact-form" onSubmit={handleSubmit(onSubmit)}>
         <label>

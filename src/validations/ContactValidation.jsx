@@ -4,13 +4,13 @@ export const contactSchema = yup.object().shape({
   name: yup
     .string()
     .min(3, "Must be at least 3 characters")
-    .max(24, "Cannot exceed 24 characters")
+    .max(50, "Cannot exceed 50 characters")
     .required("Required"),
   email: yup.string().email("Wrong email format detected").required("Required"),
   subject: yup
     .string()
     .min(3, "Must be at least 3 characters")
-    .max(24, "Cannot exceed 24 characters")
+    .max(50, "Cannot exceed 50 characters")
     .required("Required"),
   category: yup.string().required("Required"),
   message: yup

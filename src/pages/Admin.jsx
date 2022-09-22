@@ -9,7 +9,8 @@ export default function Admin() {
   const navigate = useNavigate();
   const [category, setCategory] = useState('All')
   const [loading, setLoading] = useState(true)
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([])
+  const [filteredMessages, setFilteredMessages] = useState([])
   const token = window.localStorage.getItem("JWT");
 
   useEffect(() => {
@@ -32,6 +33,16 @@ export default function Admin() {
 
   }, [navigate, token]);
 
+  useEffect(() => {
+
+    if(category === 'All'){
+      setFilteredMessages(messages)
+    } else {
+      const filterCategory = messages.filter(message => message.attributes.category === category)
+      setFilteredMessages(filterCategory)
+    }
+  }, [category])
+
   return (
     <div>
       <h1>Admin</h1>
@@ -51,11 +62,10 @@ export default function Admin() {
 
       {loading && <p>Loading...</p>}
 
-      {messages.length > 0 ? (
-        messages &&
-        messages.map((message) => (
+      {filteredMessages.length > 0 ? (
+        filteredMessages &&
+        filteredMessages.map((message) => (
 
-        message.attributes.category === category || category === 'All' ?
 
           <div key={message.id} className="message-card">
             <p>{message.attributes.category}</p>
@@ -64,8 +74,6 @@ export default function Admin() {
             <Link to={`/message/${message.id}`}>Details</Link>
             <br /> <br />
           </div>
-
-        : <p>No messages on this category</p>
 
         ))
       ) : ( !loading &&

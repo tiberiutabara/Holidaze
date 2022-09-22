@@ -41,7 +41,7 @@ export default function Admin() {
       const filterCategory = messages.filter(message => message.attributes.category === category)
       setFilteredMessages(filterCategory)
     }
-  }, [category])
+  }, [category, messages])
 
   return (
     <div>

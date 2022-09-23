@@ -7,7 +7,6 @@ const {REACT_APP_URL} = process.env
 
 export default function Hotel() {
   const { id } = useParams()
-  const prefix = REACT_APP_URL
 
   const [hotel, setHotel] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -52,13 +51,13 @@ export default function Hotel() {
 
           <p>Thumbnail:</p>
 
-          <img src={prefix + hotel.attributes.Thumbnail.data.attributes.url} alt={hotel.attributes.Title} />
+          <img src={hotel.attributes.Thumbnail.data.attributes.url} alt={hotel.attributes.Title} />
 
           <p>Gallery:</p> 
 
 
           <p>{hotel.attributes.Gallery.data.map(img => (
-            <img key={img.id} src={prefix + img.attributes.url} alt={img.attributes.name}/>
+            <img key={img.id} src={img.attributes.url} alt={img.attributes.name}/>
           ))}</p>
 
           </div>)}

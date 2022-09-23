@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import {useEffect, useState} from 'react'
 import axios from "axios"
+import Spinner from './Spinner'
 
 const {REACT_APP_URL} = process.env
 
@@ -33,7 +34,7 @@ export default function Enquiries() {
   return (
     <div>
 
-      {loading && <p>Loading...</p>}
+      {loading && <Spinner />}
 
       {enquiries.length > 0 ? (
         enquiries &&

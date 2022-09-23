@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import Spinner from "../components/Spinner";
 
 const {REACT_APP_URL} = process.env
 
@@ -60,7 +61,7 @@ export default function Admin() {
         </select>
       </label>
 
-      {loading && <p>Loading...</p>}
+      {loading && <Spinner />}
 
       {filteredMessages.length > 0 ? (
         filteredMessages &&

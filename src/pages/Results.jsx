@@ -3,6 +3,7 @@ import HotelBox from "../components/HotelBox";
 import axios from "axios";
 import SearchSpecific from "../components/SearchSpecific";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../components/Spinner";
 
 const { REACT_APP_URL } = process.env;
 
@@ -59,7 +60,7 @@ export default function Results() {
         </select>
       </label>
 
-      {loading && <p>Loading...</p>}
+      {loading && <Spinner />}
 
       {results && data ? (
         <HotelBox

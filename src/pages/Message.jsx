@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Spinner from "../components/Spinner";
 
 const { REACT_APP_URL } = process.env;
 
@@ -57,7 +58,7 @@ export default function Message() {
 
   return (
     <div className="message">
-      {loading && <p>Loading...</p>}
+      {loading && <Spinner />}
 
       {message && (
         <div>

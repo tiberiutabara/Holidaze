@@ -2,8 +2,8 @@
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import logo from "../assets/logo.png"
+import { HiMenuAlt3, HiX } from "react-icons/hi"
 import "./styles/Header.scss"
-import { HiMenuAlt3, HiX } from "react-icons/hi";
 
 export default function Header() {
 
@@ -44,7 +44,7 @@ export default function Header() {
 
         <button className="hamburger" onClick={() => setPhoneMenu(!phoneMenu)}>{!phoneMenu ? <HiMenuAlt3 className="Switch"/> : <HiX className="Switch"/>}</button>
       
-        <ul className={phoneMenu ? 'phoneMenu Open' : phoneMenu === false ? 'phoneMenu Close' : 'menu'} onClick={() => setPhoneMenu(false)}>
+        <ul className={phoneMenu ? 'phoneMenu Open' : phoneMenu === false ? 'phoneMenu Close' : 'menu'} onClick={() => setPhoneMenu(null)}>
 
           { role === 'admin' ?
             <li><Link style={{color: '#D89E1A'}} to="/admin">Admin</Link></li>

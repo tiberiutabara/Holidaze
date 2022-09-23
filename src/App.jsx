@@ -16,6 +16,7 @@ import Admin from "./pages/Admin"
 import Owner from "./pages/Owner"
 import Message from "./pages/Message";
 import Enquiry from "./pages/Enquiry";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -38,6 +39,8 @@ function App() {
             <Route path="/enquiry/:id" element={<Enquiry />} />
 
       </Routes>
+
+      <Footer />
     </div>
   );
 }

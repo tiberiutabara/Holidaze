@@ -6,6 +6,10 @@
     padding: 0;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 body{
     font-family: 'Montserrat', sans-serif;
     background-color: #fff;
@@ -13,6 +17,7 @@ body{
 
 .App{
     max-width: 1300px;
+    min-height: 100vh;
     margin: 0 auto;
 }
 

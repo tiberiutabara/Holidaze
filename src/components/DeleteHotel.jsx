@@ -48,7 +48,7 @@ export default function DeleteHotel() {
 
   return (
     <div>
-      <h3>Delete a hotel {hotelID}</h3>
+      <h3>Delete a hotel</h3>
 
       <select onChange={(e) => setHotelID(e.target.value)}>
         {hotel &&

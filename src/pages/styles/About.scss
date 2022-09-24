@@ -1,5 +1,166 @@
 .about {
+
+    // Hero section
     .hero{
-        
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: center;
+
+        .title{
+            color: #444;
+            width: 700px;
+
+            h2{
+                font-size: 48px;
+                font-weight: 600;
+            }
+
+            h1{
+                font-size: 52px;
+                font-weight: 600;
+            }
+        }
+
+        img{
+            width: 390px;
+            max-width: 80%;
+            margin: 0 3em;
+        }
+    }
+
+    // Description
+    .description{
+        margin: 0 auto;
+        margin-top: 3em;
+        width: 85%;
+
+        p{
+            width: 85%;
+            font-size: 20px;
+        }
+
+        p:first-child{
+            margin: 4em 0 3em 0;
+        }
+
+        p:last-child{
+            margin: 0 0 5em auto;
+            text-align: right;
+        }
+    }
+
+    // FAQ
+    .faq-title{
+        color: #444;
+        text-align: center;
+        font-size: 46px;
+        font-weight: 600;
+        margin: 0 2rem;
+    }
+
+    .faq-undertext{
+        color: #666;
+        text-align: center;
+        font-weight: 600;
+        font-size: 32px;
+        margin-bottom: 4em;
+    }
+
+    // Accordion
+    .accordion{
+        width: 80%;
+        margin: 0 auto;
+        margin-bottom: 6em;
+    }
+
+    .accordion-item{
+        margin: 2rem 0;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #666;
+
+        .label{
+            display: flex;
+            justify-content: space-between;
+
+            p{
+                font-size: 20px;
+                font-weight: 600;
+            }
+
+            button{
+                margin-left: 2em;
+                background: none;
+                border: none;
+                cursor: pointer;
+                font-size: 30px;
+            }
+        }
+
+        .content{
+            color: #666;
+            font-size: 18px;
+            padding: 0em 4em 1rem 0;
+        }
+    }
+}
+
+// Animation
+.Switch{
+    animation: switch 300ms ease-in;
+}
+
+@keyframes switch {
+    0% {
+        opacity: 0;
+        transform: rotate(80deg)
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+// Responsive
+@media (max-width: 1186px) {
+    .hero{
+        .title{
+            max-width: 80%;
+            margin-top: 3em;
+            text-align: center;
+        }
+    }
+
+    .faq-title{
+        font-size: 38px !important;
+    }
+
+    .faq-undertext{
+        font-size: 24px !important;
+    }
+}
+
+@media (max-width: 704px) {
+    .hero{
+        .title{
+            h2{
+                font-size: 32px !important;
+            }
+
+            h1{
+                font-size: 38px !important;
+            }
+        }
+    }
+
+    .faq-title{
+        font-size: 32px !important;
+    }
+
+    .faq-undertext{
+        font-size: 24px !important;
+    }
+
+    .content{
+        padding: 1em 0 !important;
     }
 }

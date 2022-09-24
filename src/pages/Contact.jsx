@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { contactSchema } from "../validations/ContactValidation";
+import './styles/Contact.scss'
 
 const {REACT_APP_URL} = process.env
 
@@ -57,48 +58,44 @@ export default function Contact() {
   return (
     <div className="contact">
       <h1>For collaboration proposals,</h1>
-      <h2>Don't hesitate to get in touch</h2>
-      <br /> <br />
-      <form className="contact-form" onSubmit={handleSubmit(onSubmit)}>
+      <h2>Don't hesitate to get in touch &#128075;</h2>
+
+      <form onSubmit={handleSubmit(onSubmit)}>
         <label>
-          {" "}
-          <span> Your Name / Company</span>
+          <span> Your Name / Company</span> <br />
           <input
             {...register("name")}
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          {errors.name && <span>{errors.name.message}</span>}
+          {errors.name &&<span className="error"><br /> {errors.name.message}</span>}
         </label>
-        <br /> <br />
+        
         <label>
-          {" "}
-          <span> Your Email</span>
+          <span> Your Email</span> <br />
           <input
             {...register("email")}
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          {errors.email && <span>{errors.email.message}</span>}
+          {errors.email && <span className="error"><br /> {errors.email.message}</span>}
         </label>
-        <br /> <br />
+        
         <label>
-          {" "}
-          <span> Subject Title</span>
+          <span> Subject Title</span> <br />
           <input
             {...register("subject")}
             type="text"
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
           />
-          {errors.subject && <span>{errors.subject.message}</span>}
+          {errors.subject && <span className="error"><br /> {errors.subject.message}</span>}
         </label>
-        <br /> <br />
+        
         <label>
-          {" "}
-          <span> Choose Category</span>
+          <span> Choose Category</span> <br />
           <select
             {...register("category")}
             onChange={(e) => setCategory(e.target.value)}
@@ -107,21 +104,20 @@ export default function Contact() {
             <option value="Technical Support">Technical Support</option>
             <option value="Career">Career</option>
           </select>
-          {errors.category && <span>{errors.category.message}</span>}
+          {errors.category && <span className="error"><br /> {errors.category.message}</span>}
         </label>
-        <br /> <br />
-        <label>
-          {" "}
-          <span> Message</span>
+        
+        <label className="message">
+          <span> Message</span> <br />
           <textarea
             {...register("message")}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           ></textarea>
-          {errors.message && <span>{errors.message.message}</span>}
+          {errors.message && <span className="error"><br /> {errors.message.message}</span>}
         </label>
-        <br /> <br />
-        <button>Send message</button>
+        
+        <button className="button">Send message</button>
       </form>
     </div>
   );

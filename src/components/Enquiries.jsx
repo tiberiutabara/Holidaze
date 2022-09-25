@@ -49,7 +49,7 @@ export default function Enquiries() {
 
           <Link key={enquiry.id} className="enquiry-card" to={`/enquiry/${enquiry.id}`}>
             <p>for <span>{enquiry.attributes.Hotel}</span></p>
-            <h3>{enquiry.attributes.Details}</h3>
+            <h3>{enquiry.attributes.Details.substring(0,30)}{enquiry.attributes.Details.length >= 30 && '...'}</h3>
             <p>by <span>{enquiry.attributes.Name}</span></p>
           </Link>
 

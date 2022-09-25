@@ -1,0 +1,52 @@
+.enquiry{
+    max-width: 90%;
+    margin: 0 auto;
+
+    h2{
+        text-align: center;
+        margin: 1em;
+    }
+
+    .mail{
+        margin-top: -1em;
+        text-align: center;
+    }
+
+    p{
+        color: #444;
+        font-weight: 600;
+        font-size: 18px;
+        margin: .5em 1em;
+    }
+
+    span{
+        color: #D89E1A;
+    }
+
+    .details{
+        color: #444;
+        font-weight: normal;
+    }
+
+    .content{
+        padding-left: .3em;
+        border-left: 3px solid #D89E1A;
+    }
+
+    button{
+        display: block;
+        margin: 2em auto;
+        margin-top: 1em;
+        background: none;
+        border: 3px solid #D89E1A;
+        border-radius: 50%;
+        padding: 6px 8px 2px 8px;
+        color: #D89E1A;
+        font-size: 24px;
+
+        &:hover{
+            cursor: pointer;
+            scale: 1.1;
+        }
+    }
+}

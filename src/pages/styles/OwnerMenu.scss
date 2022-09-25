@@ -1,0 +1,19 @@
+.owner-menu{
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 3em;
+
+    span{
+        color: #444;
+        margin: .3em;
+
+        &:nth-child(odd){
+            cursor: pointer;
+        }
+    }
+
+    .active{
+        color: #D89E1A;
+    }
+}

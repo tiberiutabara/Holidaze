@@ -1,16 +1,24 @@
+// General imports
 import { Link, useNavigate } from "react-router-dom"
 import {useEffect, useState} from 'react'
 import axios from "axios"
-import Spinner from './Spinner'
 
+// Styling imports
+import Spinner from './Spinner'
+import './styles/Enquiries.scss'
+
+// .env
 const {REACT_APP_URL} = process.env
 
 export default function Enquiries() {
+
+  // States and vars
   const navigate = useNavigate()
   const [loading, setLoading] = useState(true)
   const [enquiries, setEnquiries] = useState([])
   const token = window.localStorage.getItem("JWT")
 
+  // Fetch
   useEffect(() => {
     const getEnquiries = async () => {
       try {
@@ -32,25 +40,24 @@ export default function Enquiries() {
   }, [navigate, token])
 
   return (
-    <div>
-
+    <div className="enquiries">
       {loading && <Spinner />}
 
       {enquiries.length > 0 ? (
-        enquiries &&
+        enquiries && 
         enquiries.map((enquiry) => (
 
-          <div key={enquiry.id} className="enquiry-card">
-            <h3>{enquiry.attributes.Name}</h3>
-            <p>for {enquiry.attributes.Hotel}</p>
-            <Link to={`/enquiry/${enquiry.id}`}>Details</Link>
-            <br /> <br />
-          </div>
+          <Link key={enquiry.id} className="enquiry-card" to={`/enquiry/${enquiry.id}`}>
+            <p>for <span>{enquiry.attributes.Hotel}</span></p>
+            <h3>{enquiry.attributes.Details}</h3>
+            <p>by <span>{enquiry.attributes.Name}</span></p>
+          </Link>
 
         ))
       ) : ( !loading &&
         <p>No enquiries</p>
       )}
+
     </div>
   )
 }

@@ -81,7 +81,7 @@ export default function Admin() {
               <p><span>by</span> {message.attributes.name}</p>
             </Link>
           ))
-        : !loading && <p>No messages</p>}
+        : !loading && <p className="empty">No messages</p>}
     </div>
   );
 }

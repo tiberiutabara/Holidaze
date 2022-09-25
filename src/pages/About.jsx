@@ -15,12 +15,12 @@ export default function About() {
   const [itemSix, setItemSix] = useState(false);
 
   const toggleItem = (id) => {
-    id == 1 && setItemOne(!itemOne);
-    id == 2 && setItemTwo(!itemTwo);
-    id == 3 && setItemThree(!itemThree);
-    id == 4 && setItemFour(!itemFour);
-    id == 5 && setItemFive(!itemFive);
-    id == 6 && setItemSix(!itemSix);
+    id === 1 && setItemOne(!itemOne);
+    id === 2 && setItemTwo(!itemTwo);
+    id === 3 && setItemThree(!itemThree);
+    id === 4 && setItemFour(!itemFour);
+    id === 5 && setItemFive(!itemFive);
+    id === 6 && setItemSix(!itemSix);
   };
 
   return (

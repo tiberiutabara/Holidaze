@@ -1,0 +1,82 @@
+.message{
+    margin: 5em auto;
+    width: 70%;
+
+    h3{
+        font-size: 30px;
+        font-weight: 600;
+        color: #444;
+    }
+
+    p{
+        margin-top: .5em;
+        font-size: 18px;
+        font-weight: 500;
+
+        span{
+            color: #D89E1A;
+        }
+    }
+
+    .description{
+        margin-top: 1em;
+        line-height: 1.5;
+        font-weight: normal;
+        width: 90%;
+        padding-bottom: 1.5em;
+        border-bottom: 1px solid #999;
+    }
+
+    button{
+        position: relative;
+        top: 4px;
+        left: 20px;
+        
+        background: none;
+        border: 3px solid #D89E1A;
+        border-radius: 50%;
+        padding: 6px 8px 2px 8px;
+        color: #D89E1A;
+        font-size: 24px;
+
+        &:hover{
+            cursor: pointer;
+            scale: 1.1;
+        }
+    }
+}
+
+// Responsive
+
+// L
+@media (max-width: 900px) {
+.message{
+
+    width: 95%;
+    padding: 1em;
+    text-align: center;
+
+    h3{
+        line-height: 2;
+    }
+
+    .description{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+}
+
+// XXS
+@media (max-width: 288px) {
+.message{
+
+    button{
+        top: 0;
+        left: 0;
+        margin: 1em;
+    }
+
+}
+}

@@ -1,17 +1,26 @@
+// General imports
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Spinner from "../components/Spinner";
 
+// Style imports
+import Spinner from "../components/Spinner";
+import './styles/Message.scss'
+import { FaTrashAlt } from "react-icons/fa";
+
+// .env
 const { REACT_APP_URL } = process.env;
 
 export default function Message() {
+
+  // states and vars
   const navigate = useNavigate();
   const { id } = useParams();
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(true);
   const token = window.localStorage.getItem("JWT");
 
+  // fetch
   useEffect(() => {
     const getMessage = async () => {
       try {
@@ -35,7 +44,6 @@ export default function Message() {
   }, [id, navigate, token]);
 
   // delete
-
   const deleteData = () => {
     async function deleteMessage() {
       const deleteMessageData = await fetch(
@@ -62,13 +70,8 @@ export default function Message() {
 
       {message && (
         <div>
-          <h3>{message.attributes.subject}</h3>
-          <p>
-            by {message.attributes.name}, email: {message.attributes.email}
-          </p>
-          <p>Category: {message.attributes.category}</p>
-          <br />
-          <p>{message.attributes.message}</p>
+          <h3>{message.attributes.subject}
+
           <button
             onClick={() => {
               window.confirm(
@@ -78,8 +81,16 @@ export default function Message() {
                 : alert("Delete process cancelled.");
             }}
           >
-            Delete
+            <FaTrashAlt />
           </button>
+          
+          </h3>
+          <p> On - <span>{message.attributes.category}</span></p>
+          <p> By - <span>{message.attributes.name}</span></p>
+          <p> Email - <span>{message.attributes.email}</span></p>
+          <p className="description">{message.attributes.message}</p>
+
+          
         </div>
       )}
     </div>

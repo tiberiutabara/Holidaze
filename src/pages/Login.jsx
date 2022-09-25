@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import './styles/Login.scss'
 
 const { REACT_APP_URL } = process.env;
 
@@ -53,11 +54,9 @@ export default function Login() {
   return (
     <div className="login">
 
-      <h2>Log In</h2> <br />
       <form className="login-form" onSubmit={handleLogin}>
         <label>
-          {" "}
-          <span> Email </span>
+          <span> Email </span> <br />
           <input
             type="email"
             onChange={(e) => setUsername(e.target.value)}
@@ -66,8 +65,7 @@ export default function Login() {
         </label>
 
         <label>
-          {" "}
-          <span> Password </span>
+          <span> Password </span> <br />
           <input
             type="password"
             onChange={(e) => setPassword(e.target.value)}
@@ -75,8 +73,10 @@ export default function Login() {
           />
         </label>
 
-        <button>Log In</button>
+        <button className="button">Log In</button>
       </form>
+
+      <Link to="/contact">Forgot password?</Link>
     </div>
   );
 }

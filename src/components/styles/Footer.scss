@@ -36,13 +36,14 @@ footer{
 @media (max-width: 550px) {
     footer{
         justify-content: space-around;
-    }
+        padding: 1em;
 
-    ul{
-        padding-left: 0 !important;
-    }
-
-    p{
-        padding-right: 0 !important;
+        ul{
+            padding-left: 0;
+        }
+    
+        p{
+            padding-right: 0;
+        }
     }
 }

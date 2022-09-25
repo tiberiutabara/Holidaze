@@ -5,14 +5,13 @@ import axios from "axios";
 import Spinner from "../components/Spinner";
 
 // Style imports
-import './styles/Enquiry.scss'
+import "./styles/Enquiry.scss";
 import { FaTrashAlt } from "react-icons/fa";
 
 // .env
 const { REACT_APP_URL } = process.env;
 
 export default function Enquiry() {
-
   // States and vars
   const navigate = useNavigate();
   const { id } = useParams();
@@ -71,7 +70,9 @@ export default function Enquiry() {
       {enquiry && (
         <div className="enquiry">
           <h2>{enquiry.attributes.Name}</h2>
-          <p className="mail"><span>{enquiry.attributes.Email}</span></p>
+          <p className="mail">
+            <span>{enquiry.attributes.Email}</span>
+          </p>
 
           <button
             onClick={() => {
@@ -86,12 +87,23 @@ export default function Enquiry() {
           </button>
 
           <div className="content">
-            <p>Request made for <span>{enquiry.attributes.Hotel}</span> hotel on <span>{enquiry.attributes.Room}</span> Room for <span>{enquiry.attributes.Adults}</span> adults and <span>{enquiry.attributes.Children}</span> children </p>
-            <p>From <span>{enquiry.attributes.StartDate}</span></p>
-            <p>To <span>{enquiry.attributes.EndDate}</span></p>
-            <p>Details: <span className="details"> {enquiry.attributes.Details} </span></p>
+            <p>
+              Request made for <span>{enquiry.attributes.Hotel}</span> hotel on{" "}
+              <span>{enquiry.attributes.Room}</span> room for{" "}
+              <span>{enquiry.attributes.Adults}</span> adults and{" "}
+              <span>{enquiry.attributes.Children}</span> children{" "}
+            </p>
+            <p>
+              From <span>{enquiry.attributes.StartDate}</span>
+            </p>
+            <p>
+              To <span>{enquiry.attributes.EndDate}</span>
+            </p>
+            <p>
+              Details:{" "}
+              <span className="details"> {enquiry.attributes.Details} </span>
+            </p>
           </div>
-
         </div>
       )}
     </>

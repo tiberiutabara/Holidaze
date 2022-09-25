@@ -1,3 +1,110 @@
 .admin{
+
+    // Title
+    h1{
+        margin-top: .5em;
+        text-align: center;
+        color: #444;
+        font-size: 48px;
+        font-weight: 600;
+    }
+
+    // Filter
+    label{
+        display: block;
+        width: fit-content;
+        margin: 0 auto;
+        margin-top: .5em;
+        margin-bottom: 3em;
+
+        .search-icon{
+            color: #D89E1A;
+            font-size: 28px;
+            position: relative;
+            top: 10px;
+        }
+
+        select{
+           border: none;
+           border-bottom: 1px solid #dcdcdc;
+           padding: .2em .3em;
+           margin-left: .4em;
+           font-size: 16px;
+           color: #666;
+        }
+    }
+
+    // Message Card
+    .message-card{
+        display: block;
+        margin: 1em auto;
+        padding: 1em;
+        width: 70%;
+
+        border-bottom: 1px solid #999;
+        color: black;
+        text-decoration: none;
+
+        p{
+            color: #D89E1A;
+            font-size: 18px;
+            font-weight: 500;
+
+            span{
+                color: #444;
+                margin-left: 20%;
+            }
+        }
+
+        h3{
+            font-size: 24px;
+            font-weight: 600px;
+            padding: 2px 0;
+        }
+
+        &:hover h3{
+            text-decoration: underline;
+        }
+    }
+
+    a:last-child{
+        margin-bottom: 5em;
+    }
+
+}
+
+// Responsive
+
+// L
+@media (max-width: 900px) {
+.admin{
+
+    .message-card{
+        width: 90%;
+    }
+
+}
+}
+
+// SM
+@media (max-width: 500px) {
+.admin{
+
+    h1{
+        font-size: 40px;
+    }
+
+    .message-card{
+
+        p{
+                font-size: 14px;
+        }
+
+        h3{
+            font-size: 20px;
+        }
+
+    }
     
+}
 }

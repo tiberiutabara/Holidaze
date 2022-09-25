@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import Spinner from "../components/Spinner";
+import './styles/Admin.scss'
 
 const {REACT_APP_URL} = process.env
 
@@ -45,8 +46,8 @@ export default function Admin() {
   }, [category, messages])
 
   return (
-    <div>
-      <h1>Admin</h1>
+    <div className="admin">
+      <h2>Inbox</h2>
 
       <label> <span>Category: </span>
         <select 

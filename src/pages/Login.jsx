@@ -1,15 +1,18 @@
-import React from "react";
+// General imports
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import './styles/Login.scss'
 
+// Style imports
+import "./styles/Login.scss";
+
+// .env
 const { REACT_APP_URL } = process.env;
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -32,28 +35,24 @@ export default function Login() {
     });
 
     const loginResponseData = await login.json();
-    console.log(loginResponseData)
-    
+    console.log(loginResponseData);
+
     if (loginResponseData.data === null) {
-      alert('Wrong email or password')
-      localStorage.removeItem("JWT")
-    } 
+      alert("Wrong email or password");
+      localStorage.removeItem("JWT");
+    } else {
+      localStorage.setItem("JWT", loginResponseData.jwt);
+      localStorage.setItem("role", loginResponseData.user.roleType);
 
-    else {
-    localStorage.setItem('JWT', loginResponseData.jwt)
-    localStorage.setItem('role', loginResponseData.user.roleType)
+      const role = localStorage.getItem("role");
 
-    const role = localStorage.getItem('role')
-
-    role === 'admin' && navigate('/admin')
-    role === 'owner' && navigate('/owner')
-    } 
-    
+      role === "admin" && navigate("/admin");
+      role === "owner" && navigate("/owner");
+    }
   };
 
   return (
     <div className="login">
-
       <form className="login-form" onSubmit={handleLogin}>
         <label>
           <span> Email </span> <br />

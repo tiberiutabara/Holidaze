@@ -1,15 +1,24 @@
+// General imports
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+// Style imports
+import './styles/DeleteHotel.scss'
+import { FaTrashAlt } from "react-icons/fa";
+
+// .env
 const { REACT_APP_URL } = process.env;
 
 export default function DeleteHotel() {
+
+  // states and vars
   const [hotel, setHotel] = useState([]);
   const [hotelID, setHotelID] = useState(null);
   const navigate = useNavigate();
   const token = window.localStorage.getItem("JWT");
 
+  // List hotels to delete
   useEffect(() => {
     const getHotel = async () => {
       try {
@@ -23,8 +32,7 @@ export default function DeleteHotel() {
     getHotel();
   }, []);
 
-  // delete hotel
-
+  // Delete hotel
   const deleteHotel = () => {
     async function deleteSelectedHotel() {
       const deleteMessage = await fetch(
@@ -47,7 +55,7 @@ export default function DeleteHotel() {
   };
 
   return (
-    <div>
+    <div className="delete-hotel">
       <h3>Delete a hotel</h3>
 
       <select onChange={(e) => setHotelID(e.target.value)}>
@@ -66,7 +74,7 @@ export default function DeleteHotel() {
             : alert("Delete process cancelled.");
         }}
       >
-        Delete Hotel
+        <FaTrashAlt />
       </button>
     </div>
   );

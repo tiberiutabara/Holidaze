@@ -1,12 +1,19 @@
+// General imports
 import { useState } from 'react'
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { hotelSchema } from "../validations/HotelValidation";
 import { useNavigate } from 'react-router-dom';
 
+// Style imports
+import './styles/RegisterHotel.scss'
+
+// .env
 const {REACT_APP_URL} = process.env
 
 function RegisterHotel() {
+
+    // States
     const [title, setTitle] = useState("")
     const [price, setPrice] = useState(0)
     const [area, setArea] = useState("City Center")
@@ -28,6 +35,8 @@ function RegisterHotel() {
         formState: { errors },
       } = useForm({ resolver: yupResolver(hotelSchema) });
 
+    
+    // Register hotel + validate form
     const onSubmit = async () => {
 
         async function addHotel(){
@@ -75,23 +84,19 @@ function RegisterHotel() {
     }
 
   return (
-    <div>
+    <div className='register'>
         <h2>Add New Hotel</h2> 
 
         <form onSubmit={handleSubmit(onSubmit)}>
             <label> <span> Hotel Name </span>
                 <input {...register("Title")} type='text' value={title} name="Title" onChange={(e) => setTitle(e.target.value)} />
-                {errors.Title && <span>{errors.Title.message}</span>}
+                {errors.Title && <span className='error'>{errors.Title.message}</span>}
             </label>
-
-            <br /> <br />
 
             <label> <span> Price Per Night </span>
                 <input {...register("Price")} type='number' value={price} name="Price" onChange={(e) => setPrice(e.target.value)}  />
-                {errors.Price && <span>{errors.Price.message}</span>}
+                {errors.Price && <span className='error'>{errors.Price.message}</span>}
             </label>
-
-            <br /> <br />
 
             <label> <span> Location </span>
                 <select
@@ -104,73 +109,66 @@ function RegisterHotel() {
                     <option value="Urban">Urban</option>
                     <option value="Rural">Rural</option>
                 </select>
-                {errors.Area && <span>{errors.Area.message}</span>}
+                {errors.Area && <span className='error'>{errors.Area.message}</span>}
             </label>
-
-            <br /> <br />
-
-            <div> <span> Options </span> <br />
-
-                <label> <span> WiFi </span>
-                    <input {...register("WiFi")} type="checkbox" name="WiFi" onChange={() => setWifi(!wifi)} />
-                    {errors.WiFi && <span>{errors.WiFi.message}</span>}
-                </label> <br />
-
-                <label> <span> Pets Allowed</span>
-                    <input {...register("Pets")} type="checkbox" name="Pets" onChange={() => setPets(!pets)} />
-                    {errors.Pets && <span>{errors.Pets.message}</span>}
-                </label> <br />
-
-                <label> <span> Parking </span>
-                    <input {...register("Parking")} type="checkbox" name="Parking" onChange={() => setParking(!parking)} />
-                    {errors.Parking && <span>{errors.Parking.message}</span>}
-                </label> <br />
-
-                <label> <span> Private Bathroom </span>
-                    <input {...register("Bathroom")} type="checkbox" name="Bathroom" onChange={() => setBathroom(!bathroom)} />
-                    {errors.Bathroom && <span>{errors.Bathroom.message}</span>}
-                </label> <br />
-
-                <label> <span> Roomservice </span>
-                    <input {...register("Roomservice")} type="checkbox" name="Roomservice" onChange={() => setRoomservice(!roomservice)} />
-                    {errors.Roomservice && <span>{errors.Roomservice.message}</span>}               
-                </label> <br />
-
-                <label> <span> Food Available </span>
-                    <input {...register("Food")} type="checkbox" name="Food" onChange={() => setFood(!food)}/>
-                    {errors.Food && <span>{errors.Food.message}</span>}
-                </label> <br />
-            </div>
-
-            <br /> <br />
 
             <label> <span> Thumbnail </span>
                 <input {...register("Thumbnail")} type='file' accept="image/*" name="Thumbnail" onChange={(e) => setThumbnail(e.target.files[0])} required/>
-                {errors.Thumbnail && <span>{errors.Thumbnail.message}</span>}
+                {errors.Thumbnail && <span className='error'>{errors.Thumbnail.message}</span>}
             </label>
-
-            <br /> <br />
 
             <label> <span> Gallery </span>
                 <input {...register("Gallery")} type='file' accept="image/*" name="Gallery" multiple="multiple" onChange={(e) => setGallery(e.target.files)} required/>
-                {errors.Gallery && <span>{errors.Gallery.message}</span>}
+                {errors.Gallery && <span className='error'>{errors.Gallery.message}</span>}
             </label>
 
-            <br /> <br />
-
-            <label>
-            {" "}
+            <label className='message'>
             <span> Description</span>
             <textarea
                 {...register("Description")}
                 value={description} name="Description" onChange={(e) => setDescription(e.target.value)}
             ></textarea>
-            {errors.Description && <span>{errors.Description.message}</span>}
+            {errors.Description && <span className='error'>{errors.Description.message}</span>}
             </label>
 
-            <br /> <br />
+            <div className='options'>
+            <p> Options </p>
 
-            <button>Add New Hotel</button>
+            <div className='boxes'>
+                <label> <span> WiFi </span>
+                    <input {...register("WiFi")} type="checkbox" name="WiFi" onChange={() => setWifi(!wifi)} />
+                    {errors.WiFi && <span className='error'>{errors.WiFi.message}</span>}
+                </label>
+
+                <label> <span> Pets Allowed</span>
+                    <input {...register("Pets")} type="checkbox" name="Pets" onChange={() => setPets(!pets)} />
+                    {errors.Pets && <span className='error'>{errors.Pets.message}</span>}
+                </label>
+
+                <label> <span> Parking </span>
+                    <input {...register("Parking")} type="checkbox" name="Parking" onChange={() => setParking(!parking)} />
+                    {errors.Parking && <span className='error'>{errors.Parking.message}</span>}
+                </label>
+
+                <label> <span> Private Bathroom </span>
+                    <input {...register("Bathroom")} type="checkbox" name="Bathroom" onChange={() => setBathroom(!bathroom)} />
+                    {errors.Bathroom && <span className='error'>{errors.Bathroom.message}</span>}
+                </label>
+
+                <label> <span> Roomservice </span>
+                    <input {...register("Roomservice")} type="checkbox" name="Roomservice" onChange={() => setRoomservice(!roomservice)} />
+                    {errors.Roomservice && <span className='error'>{errors.Roomservice.message}</span>}               
+                </label> 
+
+                <label> <span> Food Available </span>
+                    <input {...register("Food")} type="checkbox" name="Food" onChange={() => setFood(!food)}/>
+                    {errors.Food && <span className='error'>{errors.Food.message}</span>}
+                </label> 
+            
+            </div>
+            </div>
+
+            <button className='button'>Add New Hotel</button>
         </form>
     </div>
   )

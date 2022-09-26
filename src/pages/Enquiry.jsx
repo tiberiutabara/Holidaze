@@ -13,6 +13,7 @@ const { REACT_APP_URL } = process.env;
 
 export default function Enquiry() {
   // States and vars
+  
   const navigate = useNavigate();
   const { id } = useParams();
   const [enquiry, setEnquiry] = useState(null);

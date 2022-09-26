@@ -1,9 +1,14 @@
+// General imports
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from 'react'
 import axios from "axios"
 import Enquiry from "../components/Enquiry"
+
+// Style imports
+import './styles/Hotel.scss'
 import Spinner from '../components/Spinner'
 
+// .env
 const {REACT_APP_URL} = process.env
 
 export default function Hotel() {
@@ -31,35 +36,35 @@ export default function Hotel() {
 
   return (
     <div>
-          <Enquiry hotel={hotel && hotel.attributes.Title} /> <br /><br />
-
           {loading && <Spinner />}
 
           {hotel && (<div className="hotel">
 
-          <h3>{hotel.attributes.Title}</h3>
-          <p>{hotel.attributes.Price}</p>
+          <div className="title">
+            <h3>{hotel.attributes.Title}</h3>
+            <p>{hotel.attributes.Price}</p>
+          </div>
 
+          <div className="options">
           {hotel.attributes.WiFi && <p>WiFi</p>}
           {hotel.attributes.Pets && <p>Pets Allowed</p>}
           {hotel.attributes.Parking && <p>Parking</p>}
           {hotel.attributes.Bathroom && <p>Private Bathroom</p>}
           {hotel.attributes.Roomservice && <p>Room Service</p>}
           {hotel.attributes.Food && <p>Restaurant</p>}
+          </div>
 
+          <p className="description">{hotel.attributes.Description}</p>
 
-          <p>{hotel.attributes.Description}</p>
+          <div className="gallery">
+          <img className="thumbnail" src={hotel.attributes.Thumbnail.data.attributes.url} alt={hotel.attributes.Title} />
 
-          <p>Thumbnail:</p>
-
-          <img src={hotel.attributes.Thumbnail.data.attributes.url} alt={hotel.attributes.Title} />
-
-          <p>Gallery:</p> 
-
-
-          <p>{hotel.attributes.Gallery.data.map(img => (
+          <div className="img">{hotel.attributes.Gallery.data.map(img => (
             <img key={img.id} src={img.attributes.url} alt={img.attributes.name}/>
-          ))}</p>
+          ))}</div>
+          </div>
+
+          <Enquiry hotel={hotel && hotel.attributes.Title} /> <br /><br />
 
           </div>)}
     </div>

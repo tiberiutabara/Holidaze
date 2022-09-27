@@ -1,5 +1,9 @@
+// General imports
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
+// Style imports
+import './styles/SearchSpecific.scss'
 
 export default function SearchSpecific(props) {
   const [text, setText] = useState("");
@@ -17,17 +21,20 @@ export default function SearchSpecific(props) {
   return (
     <>
       <input
+      className="search-specific"
         type="text"
         placeholder="Search hotel by name..."
         onChange={(e) => setText(e.target.value)}
       />
 
-      {results &&
-        results.map((result) => (
-          <Link key={result.id} to={`/hotel/${result.id}`}>
-            {result.attributes.Title}
-          </Link>
-        ))}
+      <div className="specific-results">
+        {results &&
+          results.map((result) => (
+            <Link key={result.id} to={`/hotel/${result.id}`}>
+              {result.attributes.Title}
+            </Link>
+          ))}
+      </div>
     </>
   );
 }

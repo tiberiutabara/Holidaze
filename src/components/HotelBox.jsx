@@ -1,4 +1,9 @@
+// General imports
 import { Link } from 'react-router-dom'
+
+// Style imports
+import './styles/HotelBox.scss'
+import { AiFillRightCircle } from "react-icons/ai";
 
 export default function HotelBox(props) {
 
@@ -11,12 +16,15 @@ export default function HotelBox(props) {
       // Filter Area - set
       hotel.attributes.Area === props.area || props.area === 'Anywhere' ?
 
-      <div key={hotel.id} className="hotel-card">
+      <Link to={`/Hotel/${hotel.id}`} key={hotel.id} className="hotel-card">
+        <img src={hotel.attributes.Thumbnail.data.attributes.url} alt={hotel.attributes.Title}/>
+        
+        <p>From <span>{hotel.attributes.Price}kr</span> /night</p>
         <h3>{hotel.attributes.Title}</h3>
-        <p>{hotel.attributes.Price}</p>
-        <Link to={`/Hotel/${hotel.id}`}>Details</Link>
-        <br /> <br />
-      </div> 
+        <p>{hotel.attributes.Area}</p>
+
+        <AiFillRightCircle className='arrow'/>
+      </Link>
 
       : null 
 

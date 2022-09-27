@@ -8,6 +8,7 @@ import Enquiry from "../components/Enquiry"
 import './styles/Hotel.scss'
 import Spinner from '../components/Spinner'
 import Gallery from "../components/Gallery"
+import { FaWifi, FaDog, FaParking, FaBath, FaBed, FaUtensils } from "react-icons/fa";
 
 // .env
 const {REACT_APP_URL} = process.env
@@ -43,21 +44,25 @@ export default function Hotel() {
 
           <Gallery data={hotel} />
 
-          <div className="title">
-            <h3>{hotel.attributes.Title}</h3>
-            <p>{hotel.attributes.Price}</p>
-          </div>
+          <div className="hotel-info">
 
-          <div className="options">
-          {hotel.attributes.WiFi && <p>WiFi</p>}
-          {hotel.attributes.Pets && <p>Pets Allowed</p>}
-          {hotel.attributes.Parking && <p>Parking</p>}
-          {hotel.attributes.Bathroom && <p>Private Bathroom</p>}
-          {hotel.attributes.Roomservice && <p>Room Service</p>}
-          {hotel.attributes.Food && <p>Restaurant</p>}
-          </div>
+            <div className="title">
+              <h3>{hotel.attributes.Title}</h3>
+              <p>From <span>{hotel.attributes.Price}kr</span> /night</p>
+            </div>
 
-          <p className="description">{hotel.attributes.Description}</p>
+            <div className="options">
+            {hotel.attributes.WiFi && <div><FaWifi className="icon"/> <span>WiFi</span></div>}
+            {hotel.attributes.Pets && <div><FaDog className="icon"/> <span>Pets Allowed</span></div>}
+            {hotel.attributes.Parking && <div><FaParking className="icon"/> <span>Parking</span></div>}
+            {hotel.attributes.Bathroom && <div><FaBath className="icon"/> <span>Private Bathroom</span></div>}
+            {hotel.attributes.Roomservice && <div><FaBed className="icon"/> <span>Room Service</span></div>}
+            {hotel.attributes.Food && <div><FaUtensils className="icon"/> <span>Restaurant</span></div>}
+            </div>
+
+            <p className="description">{hotel.attributes.Description}</p>
+
+          </div>
 
           <Enquiry hotel={hotel && hotel.attributes.Title} /> <br /><br />
 

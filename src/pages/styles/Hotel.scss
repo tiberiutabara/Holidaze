@@ -1,3 +1,97 @@
 .hotel{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .hotel-info{
+        width: 55%;
+    }
     
+    .title{
+        width: 100%;
+        padding: 1em;
+        margin: .5em 0;
+
+        h3{
+            color: #D89E1A;
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        p{
+            margin-top: .2em;
+        }
+
+        span{
+            color: #D89E1A;
+            font-size: 18px;
+        }
+    }
+
+    .options{
+        display: flex;
+        flex-wrap: wrap;
+        width: fit-content;
+        justify-content: center;
+        padding-left: 1em;
+        margin-top: -1em;
+
+        div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 1.5em;
+            margin-left: 0;
+            
+            .icon{
+                font-size: 24px;
+                color: #444;
+                margin-bottom: .3em;
+            }
+
+            span{
+                font-size: 14px;
+                font-weight: 500;
+                color: #444;
+            }
+        }
+    }
+
+    .description{
+        width: 95%;
+        line-height: 1.5;
+        font-size: 18px;
+        margin: 1em;
+        margin-bottom: 2em;
+    }
+
+
+}
+
+// Responsive
+
+// L
+@media (max-width: 900px) {
+.hotel{
+
+    justify-content: center;
+
+    .hotel-info{
+        width: 100%;
+        padding: 2em;
+    }
+
+}
+}
+
+// SM 
+
+@media (max-width: 500px) {
+.hotel{
+
+    .hotel-info{
+        padding: .5em;
+    }
+
+}
 }

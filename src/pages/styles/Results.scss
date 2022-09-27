@@ -1,0 +1,64 @@
+.results{
+
+    .results-title{
+        margin-top: 3em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        h2{
+            margin: 1em;
+            font-size: 28px;
+            font-weight: 600;
+            color: #444;
+        }
+    }
+
+    .filter-hotels{
+        margin: 2em;
+        display: block;
+        width: fit-content;
+
+        span{
+            margin-right: .5em;
+            font-size: 18px;
+            font-weight: 500;
+            color: #444;
+        }
+
+        select{
+            border: none;
+            border-bottom: 1px solid #dcdcdc;
+            padding: .2em .3em;
+            margin-left: .4em;
+            font-size: 16px;
+            color: #666;
+         }
+    }
+
+    .results-hotels{
+        max-width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+}
+
+// Responsive
+
+// SM custom title
+
+@media (max-width: 400px) {
+.results{
+
+    .results-title{
+        justify-content: center;
+    }
+
+    .filter-hotels{
+        margin-top: 0;
+    }
+
+}
+}

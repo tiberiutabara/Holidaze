@@ -7,6 +7,7 @@ import Enquiry from "../components/Enquiry"
 // Style imports
 import './styles/Hotel.scss'
 import Spinner from '../components/Spinner'
+import Gallery from "./Gallery"
 
 // .env
 const {REACT_APP_URL} = process.env
@@ -40,6 +41,8 @@ export default function Hotel() {
 
           {hotel && (<div className="hotel">
 
+          <Gallery data={hotel} />
+
           <div className="title">
             <h3>{hotel.attributes.Title}</h3>
             <p>{hotel.attributes.Price}</p>
@@ -55,14 +58,6 @@ export default function Hotel() {
           </div>
 
           <p className="description">{hotel.attributes.Description}</p>
-
-          <div className="gallery">
-          <img className="thumbnail" src={hotel.attributes.Thumbnail.data.attributes.url} alt={hotel.attributes.Title} />
-
-          <div className="img">{hotel.attributes.Gallery.data.map(img => (
-            <img key={img.id} src={img.attributes.url} alt={img.attributes.name}/>
-          ))}</div>
-          </div>
 
           <Enquiry hotel={hotel && hotel.attributes.Title} /> <br /><br />
 

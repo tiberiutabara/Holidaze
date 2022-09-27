@@ -4,8 +4,8 @@ import { useEffect } from 'react'
 
 // Style imports
 import './styles/Gallery.scss'
-import Lightbox from 'react-image-lightbox'
-import 'react-image-lightbox/style.css'
+import Lightbox from 'react-18-image-lightbox'
+import 'react-18-image-lightbox/style.css'
 
 export default function Gallery(props) {
     const [images, setImages] = useState([])
@@ -26,6 +26,7 @@ export default function Gallery(props) {
 
   return (
     <div className="gallery">
+
         <img className="thumbnail" src={thumbnail} alt={data.attributes.Title} />
 
         <div className="images">
@@ -43,15 +44,18 @@ export default function Gallery(props) {
             prevSrc={images[(photoIndex + images.length - 1) % images.length]}
             onCloseRequest={() => setIsOpen(false)}
             onMovePrevRequest={() =>
-            setPhotoIndex({
-                photoIndex: (photoIndex + images.length - 1) % images.length,
-              })
+            setPhotoIndex(
+                photoIndex => (photoIndex + images.length - 1) % images.length,
+              )
             }
             onMoveNextRequest={() =>
-            setPhotoIndex({
-                photoIndex: (photoIndex + 1) % images.length,
-              })
+            setPhotoIndex(
+                photoIndex => (photoIndex + 1) % images.length,
+              )
             }
+            onImageLoad={() => {
+                window.dispatchEvent(new Event('resize'));
+              }}
           />
         )}
     </div>

@@ -7,7 +7,7 @@ import Enquiry from "../components/Enquiry"
 // Style imports
 import './styles/Hotel.scss'
 import Spinner from '../components/Spinner'
-import Gallery from "./Gallery"
+import Gallery from "../components/Gallery"
 
 // .env
 const {REACT_APP_URL} = process.env

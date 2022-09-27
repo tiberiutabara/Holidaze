@@ -18,12 +18,13 @@
         max-height: 35vh;
         width: 40%;
         justify-self: center;
+        padding-left: 1em;
     }
 
     .images{
         min-height: 35vh;
         max-height: 35vh;
-        max-width: 60%;
+        width: 60%;
         overflow: hidden;
         display: flex;
         flex-wrap: wrap;
@@ -57,4 +58,42 @@
             }
         }
     }
+}
+
+// Responsive
+
+// L
+@media (max-width: 900px) {
+.gallery{
+
+    padding: 1em;
+
+    .images{
+        width: 90%;
+    }
+
+    .thumbnail{
+        width: 80%;
+        margin-bottom: 2em;
+        padding-left: 0;
+    }
+
+}
+}
+
+// SM
+@media (max-width: 500px) {
+.gallery{
+
+    padding: 0;
+
+    .images{
+        width: 100%;
+    }
+
+    .thumbnail{
+        width: 90%;
+    }
+   
+}
 }

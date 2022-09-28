@@ -12,11 +12,11 @@ export default function Home() {
     <div className="home">
       <SearchDetails />
 
-      <h2>Newest Listings</h2>
+      <h2 className="new-listings-title">Newest Listings</h2>
       <NewListings />
 
       <div className="offer">
-        <img src={group} alt="Offer group team" />
+        <img src={group} alt="Offer group team" className="offer-img"/>
         <div className="offer-details">
           <h1>The perfect Deals</h1>
           <h1>For Your Team</h1>

@@ -1,6 +1,6 @@
 // General imports
 import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 // Date range
 import { DateRange } from "react-date-range"
@@ -10,7 +10,9 @@ import { format } from "date-fns"
 
 // Style imports
 import './styles/SearchDetails.scss'
-import hero from '../assets/hero.jpg'
+import { MdMail } from "react-icons/md"
+import { FaMapMarkerAlt, FaCalendar, } from "react-icons/fa" 
+import { BsFillPersonFill } from "react-icons/bs"
 
 export default function SearchDetails() {
 
@@ -21,6 +23,10 @@ export default function SearchDetails() {
     children: 0,
     room: 1,
   });
+
+  // open states
+  const [openCalendary, setOpenCalendary] = useState(false)
+  const [openGuests, setOpenGuests] = useState(false)
 
   // calendary
   const [fromDate, setFromDate] = useState("");
@@ -66,42 +72,51 @@ export default function SearchDetails() {
 
   return (
     <div className="search-details">
+
     <div className="hero">
-      <img src={hero} alt="Hero landing pool" />
+      <div className="hero-content">
+        <h1>Find Your</h1>
+        <h2>Perfect Place</h2>
+
+        <p>Search the best hotel deals in Bergen by using the search tool. Always proved to find what is best suited for visitors.</p>
+
+        <Link to="/contact"><MdMail className="icon"/> Reach us to get your hotel listed</Link>
+      </div>
     </div>
 
     <div className="search-form">
+      <div className="search-fields">
       <label>
-        <span> Location </span>
+        <p><FaMapMarkerAlt className="fields-icon"/> Location</p>
         <select onChange={(e) => setLocation(e.target.value)}>
           <option value="Anywhere">Anywhere</option>
           <option value="City Center">City Center</option>
           <option value="Urban">Urban</option>
           <option value="Rural">Rural</option>
         </select>
-      </label>{" "}
+      </label>
       
       <label>
-        {" "}
-        <span>
-          {fromDate} to {toDate}
+        <p><FaCalendar className="fields-icon"/> Date</p>
+        <span onClick={() => setOpenCalendary(!openCalendary)}>
+          {fromDate} - {toDate}
         </span>
         <DateRange
-          className="calendar"
+          className={`calendary ${openCalendary && 'open-item'}`}
           editableDateInputs={true}
           onChange={(item) => setDate([item.selection])}
           moveRangeOnFirstSelection={false}
           ranges={date}
           rangeColors={["#D89E1A"]}
         />
-      </label>{" "}
+      </label>
 
       <label>
-        {" "}
-        <span>{`${guests.adult} adult . ${guests.children} children . ${guests.room} room`}</span>
-        <div className="guests">
-          <span>
-            Adults
+        <p><BsFillPersonFill className="fields-icon"/> Guests</p>
+        <span onClick={() => setOpenGuests(!openGuests)}>{`${guests.adult} adult - ${guests.children} children - ${guests.room} room`}</span>
+        <div className={`guests ${openGuests && 'open-item'}`}>
+          <div>
+            <span>Adults</span>
             
             <button
               disabled={guests.adult <= 1}
@@ -116,9 +131,9 @@ export default function SearchDetails() {
             >
               +
             </button>
-          </span>{" "}
+          </div>
 
-          <span>
+          <div>
             Children
             <button
               disabled={guests.children <= 0}
@@ -133,9 +148,9 @@ export default function SearchDetails() {
             >
               +
             </button>
-          </span>{" "}
+          </div>
 
-          <span>
+          <div>
             Room
             <button
               disabled={guests.room <= 1}
@@ -150,10 +165,12 @@ export default function SearchDetails() {
             >
               +
             </button>
-          </span>
+          </div>
         </div>
-      </label>
-      <button onClick={() => onSubmit()}>Search</button>
+      </label> 
+      </div>
+
+      <button className="button" onClick={() => onSubmit()}>Search Rooms</button>
     </div>
   </div>
   );

@@ -1,8 +1,15 @@
-import { Link } from "react-router-dom";
+// General imports
+import { Link } from "react-router-dom"
 import { useState, useEffect } from 'react'
 import axios from "axios"
-import Spinner from './Spinner'
 
+// Style imports
+import Spinner from './Spinner'
+import './styles/HotelBox.scss'
+import './styles/NewListings.scss'
+import { AiFillRightCircle } from "react-icons/ai"
+
+// .env
 const {REACT_APP_URL} = process.env
 
 export default function NewListings() {
@@ -18,26 +25,28 @@ export default function NewListings() {
       } catch (err) {
         console.log(err)
       }
-    };
+    }
 
     getRecent()
-  }, []);
+  }, [])
 
   return (
-    <div>
-    
-    <h2>Newest Listings</h2>
+    <div className="new-hotels">
 
     {loading && <Spinner />}
+
     {recent && (
       recent.slice(0,6).map(hotel => (
 
-        <div key={hotel.id} className="hotel-card">
+        <Link to={`/Hotel/${hotel.id}`} key={hotel.id} className="hotel-card">
+        <img src={hotel.attributes.Thumbnail.data.attributes.url} alt={hotel.attributes.Title}/>
+        
+        <p>From <span>{hotel.attributes.Price}kr</span> /night</p>
         <h3>{hotel.attributes.Title}</h3>
-        <p>{hotel.attributes.Price}</p>
-        <Link to={`/Hotel/${hotel.id}`}>Details</Link>
-        <br /> <br />
-        </div> 
+        <p>{hotel.attributes.Area}</p>
+
+        <AiFillRightCircle className='arrow'/>
+        </Link>
 
       ))
     )}

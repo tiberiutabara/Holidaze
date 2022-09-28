@@ -55,7 +55,7 @@ export default function Hotel() {
             {hotel.attributes.WiFi && <div><FaWifi className="icon"/> <span>WiFi</span></div>}
             {hotel.attributes.Pets && <div><FaDog className="icon"/> <span>Pets Allowed</span></div>}
             {hotel.attributes.Parking && <div><FaParking className="icon"/> <span>Parking</span></div>}
-            {hotel.attributes.Bathroom && <div><FaBath className="icon"/> <span>Private Bathroom</span></div>}
+            {hotel.attributes.Bathroom && <div><FaBath className="icon"/> <span>Bathroom</span></div>}
             {hotel.attributes.Roomservice && <div><FaBed className="icon"/> <span>Room Service</span></div>}
             {hotel.attributes.Food && <div><FaUtensils className="icon"/> <span>Restaurant</span></div>}
             </div>

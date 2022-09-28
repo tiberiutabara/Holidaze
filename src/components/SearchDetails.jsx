@@ -1,13 +1,20 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+// General imports
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
-// date range
-import { DateRange } from "react-date-range";
-import "react-date-range/dist/styles.css"; // main css file
-import "react-date-range/dist/theme/default.css"; // theme css file
-import { format } from "date-fns";
+// Date range
+import { DateRange } from "react-date-range"
+import "react-date-range/dist/styles.css"
+import "react-date-range/dist/theme/default.css"
+import { format } from "date-fns"
+
+// Style imports
+import './styles/SearchDetails.scss'
+import hero from '../assets/hero.jpg'
 
 export default function SearchDetails() {
+
+  // main states
   const [location, setLocation] = useState("Anywhere");
   const [guests, setGuests] = useState({
     adult: 1,
@@ -16,7 +23,6 @@ export default function SearchDetails() {
   });
 
   // calendary
-
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
   const [date, setDate] = useState([
@@ -33,7 +39,6 @@ export default function SearchDetails() {
   }, [fromDate, toDate, date]);
 
   // guests
-
   const handleGuests = (name, operation) => {
     setGuests((prev) => {
       return {
@@ -61,6 +66,11 @@ export default function SearchDetails() {
 
   return (
     <div className="search-details">
+    <div className="hero">
+      <img src={hero} alt="Hero landing pool" />
+    </div>
+
+    <div className="search-form">
       <label>
         <span> Location </span>
         <select onChange={(e) => setLocation(e.target.value)}>
@@ -145,5 +155,6 @@ export default function SearchDetails() {
       </label>
       <button onClick={() => onSubmit()}>Search</button>
     </div>
+  </div>
   );
 }

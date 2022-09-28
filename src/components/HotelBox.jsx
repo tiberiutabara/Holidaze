@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 // Style imports
 import './styles/HotelBox.scss'
-import { AiFillRightCircle } from "react-icons/ai";
+import { AiFillRightCircle } from "react-icons/ai"
 
 export default function HotelBox(props) {
 

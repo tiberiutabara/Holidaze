@@ -135,7 +135,7 @@
             -webkit-box-shadow: 1px 1px 20px 5px rgba(0,0,0,0.15);
             -moz-box-shadow: 1px 1px 20px 5px rgba(0,0,0,0.15);
             margin-top: 5px;
-            width: 200px;
+            width: 220px;
             max-width: 90%;
             flex-direction: column;
 
@@ -148,6 +148,7 @@
                 button{
                     cursor: pointer;
                     margin-right: 1em;
+                    padding: 0 .5em;
                 }
             }
 
@@ -213,6 +214,10 @@
 
     .search-form{
         width: 90%;
+
+        .calendary{
+            margin-left: -42px;
+        }
     }
 
 }
@@ -225,6 +230,10 @@
 
     .search-form{
         margin-top: -50px;
+
+        .guests{
+            margin-left: -8px;
+        }
     }
 
 }

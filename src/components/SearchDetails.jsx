@@ -28,6 +28,16 @@ export default function SearchDetails() {
   const [openCalendary, setOpenCalendary] = useState(false)
   const [openGuests, setOpenGuests] = useState(false)
 
+  const onOpenCalendary = () => {
+    setOpenCalendary(!openCalendary)
+    setOpenGuests(false)
+  }
+
+  const onOpenGuests = () => {
+    setOpenGuests(!openGuests)
+    setOpenCalendary(false)
+  }
+
   // calendary
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
@@ -98,7 +108,7 @@ export default function SearchDetails() {
       
       <label>
         <p><FaCalendar className="fields-icon"/> Date</p>
-        <span onClick={() => setOpenCalendary(!openCalendary)}>
+        <span onClick={() => onOpenCalendary()}>
           {fromDate} - {toDate}
         </span>
         <DateRange
@@ -113,7 +123,7 @@ export default function SearchDetails() {
 
       <label>
         <p><BsFillPersonFill className="fields-icon"/> Guests</p>
-        <span onClick={() => setOpenGuests(!openGuests)}>{`${guests.adult} adult - ${guests.children} children - ${guests.room} room`}</span>
+        <span onClick={() => onOpenGuests()}>{`${guests.adult} adult - ${guests.children} children - ${guests.room} room`}</span>
         <div className={`guests ${openGuests && 'open-item'}`}>
           <div>
             <span>Adults</span>

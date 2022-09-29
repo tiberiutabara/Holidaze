@@ -18,10 +18,17 @@ export default function Home() {
       <div className="offer">
         <img src={group} alt="Offer group team" className="offer-img"/>
         <div className="offer-details">
-          <h1>The perfect Deals</h1>
-          <h1>For Your Team</h1>
 
-          <p></p>
+          <div>
+          <h2>The perfect Deals</h2>
+          <h1>For Your Team</h1>
+          </div>
+
+          <p>Holidaze always thinks about your company. 
+          Get the best deals by traveling together in
+          business trips. Our colaborating hotels in 
+          Bergen have guaranteed offers, just specify
+          it when you make the enquiry.</p>
 
           <div className="percent-box">
             <p>Up to</p>

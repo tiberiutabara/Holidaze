@@ -1,6 +1,28 @@
 .new-hotels{
-    max-width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    .hotels-showcase{
+        max-width: 100%;
+        height: fit-content;
+        padding-bottom: 4em;
+        overflow: hidden;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        border-radius: 35px;
+    
+        background-color: #0057FF;
+        background: linear-gradient(0deg, rgba(0,87,255,0.25) 0%, rgba(0,87,255,0.15) 30%, rgba(0,87,255,0) 100%);
+    }
+    
+    .icon{
+        display: block;
+        position: relative;
+        bottom: 14px;
+        font-size: 48px;
+        margin: 0 auto;
+
+        &:hover{
+            scale: 1.1;
+            cursor: pointer;
+        }
+    }
 }

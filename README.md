@@ -1,4 +1,4 @@
-<h3>Holidaze</h3>
+<h3>Holidaze</h3> 
 
 Admin: admin@holidiaze.com - Pass: test1234 <br />
 Owner: owner@holidiaze.com - Pass: test1234
@@ -7,3 +7,6 @@ The webiste has 2 types of account, admin and owner. The admin gets messages on 
 
 Note: to test delete functionality please create a new post/message first, the current content has showcase purposes and is to be left like it is. 
 Thank you!
+
+Link to website:
+https://holidaze-tab.netlify.app/

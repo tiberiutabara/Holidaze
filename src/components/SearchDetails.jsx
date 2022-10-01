@@ -44,7 +44,7 @@ export default function SearchDetails() {
   const [date, setDate] = useState([
     {
       startDate: new Date(),
-      endDate: new Date(),
+      endDate: new Date(Date.now() + ( 3600 * 1000 * 24)),
       key: "selection",
     },
   ]);

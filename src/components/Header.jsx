@@ -1,6 +1,6 @@
 // imports
 import { useState, useEffect } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate, useLocation } from "react-router-dom"
 import logo from "../assets/logo.png"
 import { HiMenuAlt3, HiX } from "react-icons/hi"
 import "./styles/Header.scss"
@@ -12,6 +12,7 @@ export default function Header() {
   const token = window.localStorage.getItem("JWT")
   const role = localStorage.getItem('role')
   const navigate = useNavigate()
+  const location = useLocation()
 
   const logout = () => {
     localStorage.removeItem('JWT')
@@ -47,17 +48,17 @@ export default function Header() {
         <ul className={phoneMenu ? 'phoneMenu Open' : phoneMenu === false ? 'phoneMenu Close' : 'menu'} onClick={() => setPhoneMenu(null)}>
 
           { role === 'admin' ?
-            <li><Link style={{color: '#D89E1A'}} to="/admin">Admin</Link></li>
+            <li className={location.pathname === "/admin" ? "current-page" : null}><Link to="/admin">Admin</Link></li>
 
             : role === 'owner' ?
-            <li><Link style={{color: '#D89E1A'}} to="/owner">Admin</Link></li>
+            <li className={location.pathname === "/owner" ? "current-page" : null}><Link to="/owner">Admin</Link></li>
 
             : null
           }
 
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
+            <li className={location.pathname === "/" ? "current-page" : null}><Link to="/">Home</Link></li>
+            <li className={location.pathname === "/about" ? "current-page" : null}><Link to="/about">About</Link></li>
+            <li className={location.pathname === "/contact" ? "current-page" : null}><Link to="/contact">Contact</Link></li>
 
             { !token ? 
             <li className="log-button"><Link to ="/login"><button className="button">Log In</button></Link></li>

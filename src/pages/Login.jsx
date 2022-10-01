@@ -11,6 +11,7 @@ const { REACT_APP_URL } = process.env;
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [failLogin, setFailLogin] = useState(null);
 
   const navigate = useNavigate();
 
@@ -38,7 +39,7 @@ export default function Login() {
     console.log(loginResponseData);
 
     if (loginResponseData.data === null) {
-      alert("Wrong email or password");
+      setFailLogin("Wrong email or password");
       localStorage.removeItem("JWT");
     } else {
       localStorage.setItem("JWT", loginResponseData.jwt);
@@ -53,6 +54,9 @@ export default function Login() {
 
   return (
     <div className="login">
+
+      {failLogin && <p className="error">{failLogin}</p>}
+
       <form className="login-form" onSubmit={handleLogin}>
         <label>
           <span> Email </span> <br />

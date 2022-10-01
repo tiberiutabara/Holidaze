@@ -1,6 +1,6 @@
 header{
     
-// General styles
+    // General styles
     height: 130px;
     background-color: white;
     display: flex;
@@ -8,12 +8,12 @@ header{
     align-items: center;
     margin-bottom: 2em;
 
-// Image
+    // Image
     img{
         height: 81px;
     }
 
-// Menu
+    // Menu
     .menu{
         display: flex;
         justify-content: space-between;
@@ -33,9 +33,14 @@ header{
         }
     }
 
-// Log in/out button
+    // Log in/out button
     .log-button{
         margin-top: -0.3rem;
+    }
+
+    // Current item
+    .current-page a{
+        color: #D89E1A !important;
     }
 
 }
